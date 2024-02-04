@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.workoutkotlinapp.src.koin.appModule
 import com.example.workoutkotlinapp.src.screens.Login.Login
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
@@ -30,6 +33,14 @@ class MainActivity : ComponentActivity() {
                 }
             },
         )
+
+        // start Koin!
+        startKoin {
+            // declare used Android context
+            androidContext(this@MainActivity)
+            // declare modules
+            modules(listOf(appModule))
+        }
 
         Timber.d("App Created!")
 

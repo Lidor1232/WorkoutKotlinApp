@@ -65,6 +65,13 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0"
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "androidx.compose.runtime:runtime-livedata:1.6.0"
+
+     // Koin
+    implementation "io.insert-koin:koin-android:3.2.0-beta-1"
+    implementation "io.insert-koin:koin-androidx-navigation:3.2.0-beta-1"
+    implementation "io.insert-koin:koin-androidx-compose:3.2.0-beta-1"
+    testImplementation "io.insert-koin:koin-test-junit4:3.2.0-beta-1"
 
 
 }
