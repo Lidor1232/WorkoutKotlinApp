@@ -14,7 +14,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import timber.log.Timber
@@ -32,12 +31,6 @@ fun Login() {
         SubmitButton()
         RegisterButton()
     }
-}
-
-@Preview
-@Composable
-fun LoginPreview() {
-    Login()
 }
 
 @Composable
@@ -75,7 +68,7 @@ fun SubmitButton() {
     val state by viewModel.state.observeAsState(LoginState())
 
     Button(onClick = {
-                     Timber.d("UserName: ${state.userName}, Password: ${state.password}")
+        Timber.d("UserName: ${state.userName}, Password: ${state.password}")
     }, modifier = Modifier.padding(bottom = 16.dp)) {
         Text(text = "Submit")
     }
