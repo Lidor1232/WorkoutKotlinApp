@@ -17,6 +17,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.workoutkotlinapp.ActiveScreen
+import com.example.workoutkotlinapp.MainIntent
+import com.example.workoutkotlinapp.MainViewModel
 import timber.log.Timber
 
 @Composable
@@ -122,7 +125,11 @@ fun SubmitButton() {
 
 @Composable
 fun LoginButton() {
-    Button(onClick = { }) {
+    val viewModel: MainViewModel = viewModel()
+
+    Button(onClick = {
+        viewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.Login))
+    }) {
         Text(text = "Login")
     }
 }
