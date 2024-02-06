@@ -27,11 +27,26 @@ fun Login() {
         verticalArrangement = Arrangement.Center,
     ) {
         LoadingHandler()
+        ErrorHandler()
         Title()
         UserNameInput()
         PasswordInput()
         SubmitButton()
         RegisterButton()
+    }
+}
+
+@Composable()
+fun ErrorHandler() {
+    val viewModel: LoginViewModel = viewModel()
+    val state by viewModel.state.observeAsState(LoginState())
+
+    if (state.error != null) {
+        Text(
+            text = "${state.error}",
+            modifier = Modifier.padding(bottom = 16.dp),
+            color = Color.Red,
+        )
     }
 }
 

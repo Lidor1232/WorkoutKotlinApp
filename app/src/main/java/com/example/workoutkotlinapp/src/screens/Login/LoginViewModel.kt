@@ -24,8 +24,8 @@ class LoginViewModel : ViewModel() {
                 _state.value = _state.value?.copy(isLoading = intent.isLoading)
             }
 
-            is LoginIntent.SetIsError -> {
-                _state.value = _state.value?.copy(isError = intent.isError)
+            is LoginIntent.SetError -> {
+                _state.value = _state.value?.copy(error = intent.error)
             }
         }
     }
@@ -36,12 +36,13 @@ class LoginViewModel : ViewModel() {
     ) {
         try {
             processIntent(LoginIntent.SetIsLoading(true))
+            processIntent(LoginIntent.SetError(null))
             val body = UserLoginRequest(userName, password)
             val response = ApiClient.apiService.loginUser(body = body)
             processIntent(LoginIntent.SetIsLoading(false))
         } catch (e: retrofit2.HttpException) {
             processIntent(LoginIntent.SetIsLoading(false))
-            processIntent(LoginIntent.SetIsError(true))
+            processIntent(LoginIntent.SetError(e.message()))
         }
     }
 }
