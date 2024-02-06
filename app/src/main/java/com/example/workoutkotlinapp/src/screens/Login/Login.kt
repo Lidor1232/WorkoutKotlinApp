@@ -26,11 +26,25 @@ fun Login() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
+        LoadingHandler()
         Title()
         UserNameInput()
         PasswordInput()
         SubmitButton()
         RegisterButton()
+    }
+}
+
+@Composable()
+fun LoadingHandler() {
+    val viewModel: LoginViewModel = viewModel()
+    val state by viewModel.state.observeAsState(LoginState())
+
+    if (state.isLoading) {
+        Text(
+            text = "Loading...",
+            modifier = Modifier.padding(bottom = 16.dp),
+        )
     }
 }
 
