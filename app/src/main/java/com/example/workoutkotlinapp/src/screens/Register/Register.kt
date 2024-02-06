@@ -14,7 +14,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -31,6 +30,8 @@ fun Register() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
+        ErrorHandler()
+        LoadingHandler()
         Title()
         FirstNameInput()
         LastNameInput()
@@ -41,14 +42,35 @@ fun Register() {
     }
 }
 
-@Preview
-@Composable
-fun RegisterPreview() {
-    Register()
+@Composable()
+private fun ErrorHandler() {
+    val viewModel: RegisterViewModel = viewModel()
+    val state by viewModel.state.observeAsState(RegisterState())
+
+    if (state.error != null) {
+        Text(
+            text = "${state.error}",
+            modifier = Modifier.padding(bottom = 16.dp),
+            color = Color.Red,
+        )
+    }
+}
+
+@Composable()
+private fun LoadingHandler() {
+    val viewModel: RegisterViewModel = viewModel()
+    val state by viewModel.state.observeAsState(RegisterState())
+
+    if (state.isLoading) {
+        Text(
+            text = "Loading...",
+            modifier = Modifier.padding(bottom = 16.dp),
+        )
+    }
 }
 
 @Composable
-fun Title() {
+private fun Title() {
     Text(
         text = "Register Screen",
         color = Color.White,
@@ -58,7 +80,7 @@ fun Title() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FirstNameInput() {
+private fun FirstNameInput() {
     val viewModel: RegisterViewModel = viewModel()
     val state by viewModel.state.observeAsState(RegisterState())
 
@@ -72,7 +94,7 @@ fun FirstNameInput() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LastNameInput() {
+private fun LastNameInput() {
     val viewModel: RegisterViewModel = viewModel()
     val state by viewModel.state.observeAsState(RegisterState())
 
@@ -91,7 +113,7 @@ fun LastNameInput() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserNameInput() {
+private fun UserNameInput() {
     val viewModel: RegisterViewModel = viewModel()
     val state by viewModel.state.observeAsState(RegisterState())
 
@@ -105,7 +127,7 @@ fun UserNameInput() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordInput() {
+private fun PasswordInput() {
     val viewModel: RegisterViewModel = viewModel()
     val state by viewModel.state.observeAsState(RegisterState())
 
@@ -118,24 +140,25 @@ fun PasswordInput() {
 }
 
 @Composable
-fun SubmitButton() {
+private fun SubmitButton() {
     val registerViewModel: RegisterViewModel = viewModel()
     val mainViewModel: MainViewModel = viewModel()
     val state by registerViewModel.state.observeAsState(RegisterState())
 
     Button(onClick = {
         registerViewModel.viewModelScope.launch {
-            val response = registerViewModel.userRegister(
-                state.firstName,
-                state.lastName,
-                state.userName,
-                state.password,
-            )
+            val response =
+                registerViewModel.userRegister(
+                    state.firstName,
+                    state.lastName,
+                    state.userName,
+                    state.password,
+                )
             if (response != null) {
                 mainViewModel.processIntent(MainIntent.SetToken(response.token))
                 mainViewModel.processIntent(MainIntent.SetUser(response.user))
                 mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
-                Timber.d("Register User: ${response}")
+                Timber.d("Register User: $response")
             }
         }
     }, modifier = Modifier.padding(bottom = 16.dp)) {
@@ -144,7 +167,7 @@ fun SubmitButton() {
 }
 
 @Composable
-fun LoginButton() {
+private fun LoginButton() {
     val viewModel: MainViewModel = viewModel()
 
     Button(onClick = {
