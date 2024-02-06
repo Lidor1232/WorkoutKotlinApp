@@ -19,7 +19,7 @@ data class CreateUserResponse(
 
 interface CreateUserApi {
     @POST("user/create")
-    fun createUser(
+    suspend fun createUser(
         @Body body: CreateUserRequest,
     ): Call<CreateUserResponse>
 }

@@ -12,7 +12,7 @@ data class UserLoginRequest(
 
 interface UserLoginApi {
     @POST("user/login")
-    fun loginUser(
+    suspend fun loginUser(
         @Body body: UserLoginRequest,
     ): Call<User>
 }

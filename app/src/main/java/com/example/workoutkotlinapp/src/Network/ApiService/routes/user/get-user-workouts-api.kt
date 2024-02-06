@@ -11,5 +11,5 @@ data class GetUserWorkoutsResponse(
 
 interface GetUserWorkoutsApi {
     @GET("user/workouts")
-    fun getUserWorkouts(): Call<GetUserWorkoutsResponse>
+    suspend fun getUserWorkouts(): Call<GetUserWorkoutsResponse>
 }

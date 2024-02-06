@@ -1,3 +1,3 @@
 package com.example.workoutkotlinapp.src.types
 
-data class Workout(val _id: String, val user: String, val date: String)
+data class Workout(val _id: String, val date: String)
