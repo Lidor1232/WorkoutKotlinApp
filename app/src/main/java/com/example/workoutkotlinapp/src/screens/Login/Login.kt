@@ -117,7 +117,11 @@ fun SubmitButton() {
 
 @Composable
 fun RegisterButton() {
-    Button(onClick = { }) {
+    val viewModel: MainViewModel = viewModel()
+
+    Button(onClick = {
+        viewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.Register))
+    }) {
         Text(text = "Register")
     }
 }
