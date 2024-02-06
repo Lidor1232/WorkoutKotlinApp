@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
-import com.example.workoutkotlinapp.src.Network.ApiService.routes.TestResponse
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.UserLoginRequest
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,8 +27,11 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun userLogin() {
-        val body = UserLoginRequest("dummyUserName", "dummyPassword")
+    suspend fun userLogin(
+        userName: String,
+        password: String,
+    ) {
+        val body = UserLoginRequest(userName, password)
         val call = ApiClient.apiService.loginUser(body = body)
 
         call.enqueue(
@@ -48,36 +50,6 @@ class LoginViewModel : ViewModel() {
 
                 override fun onFailure(
                     call: Call<User>,
-                    t: Throwable,
-                ) {
-                    Timber.d("Dummy Failed")
-                    Timber.d("Dummy Failed $t")
-                }
-            },
-        )
-    }
-
-    fun test() {
-        val call = ApiClient.apiService.test()
-
-        call.enqueue(
-            object : Callback<TestResponse> {
-                override fun onResponse(
-                    call: Call<TestResponse>,
-                    response: Response<TestResponse>,
-                ) {
-                    if (response.isSuccessful) {
-                        Timber.d("LOGIN SuccessFull")
-                        Timber.d("LOGIN Response: ${response.body()?.statusCode}")
-                        Timber.d("LOGIN Response: ${response.body()?.message}")
-                    } else {
-                        Timber.d(response.toString())
-                        Timber.d("LOGIN Fail")
-                    }
-                }
-
-                override fun onFailure(
-                    call: Call<TestResponse>,
                     t: Throwable,
                 ) {
                     Timber.d("Dummy Failed")
