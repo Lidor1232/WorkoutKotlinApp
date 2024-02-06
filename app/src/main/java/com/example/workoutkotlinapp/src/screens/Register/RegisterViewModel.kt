@@ -25,6 +25,27 @@ class RegisterViewModel : ViewModel() {
             is RegisterIntent.SetPassword -> {
                 _state.value = _state.value?.copy(password = intent.password)
             }
+
+            is RegisterIntent.SetIsLoading -> {
+                _state.value = _state.value?.copy(isLoading = intent.isLoading)
+            }
+
+            is RegisterIntent.SetError -> {
+                _state.value = _state.value?.copy(error = intent.error)
+            }
+        }
+    }
+
+    suspend fun userRegister(
+        firstName: String,
+        lastName: String,
+        userName: String,
+        password: String,
+    ) {
+        try {
+            processIntent(RegisterIntent.SetIsLoading(true))
+            processIntent(RegisterIntent.SetError(null))
+        } catch (e: retrofit2.HttpException) {
         }
     }
 }
