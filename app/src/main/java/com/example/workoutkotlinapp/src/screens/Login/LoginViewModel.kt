@@ -1,5 +1,6 @@
 package com.example.workoutkotlinapp.src.screens.Login
 
+import android.net.http.HttpException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,9 +28,13 @@ class LoginViewModel : ViewModel() {
         userName: String,
         password: String,
     ) {
-        val body = UserLoginRequest(userName, password)
-        val response = ApiClient.apiService.loginUser(body = body)
+        try {
+            val body = UserLoginRequest(userName, password)
+            val response = ApiClient.apiService.loginUser(body = body)
 
-        Timber.d("RESPONSE: ${response.user.userName}")
+            Timber.d("RESPONSE: ${response.user.userName}")
+        } catch (e: retrofit2.HttpException) {
+            Timber.d(e.message())
+        }
     }
 }
