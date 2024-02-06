@@ -107,7 +107,7 @@ fun SubmitButton() {
             if (response != null) {
                 mainViewModel.processIntent(MainIntent.SetToken(response.token))
                 mainViewModel.processIntent(MainIntent.SetUser(response.user))
-                mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.Register))
+                mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
             }
         }
     }, modifier = Modifier.padding(bottom = 16.dp)) {

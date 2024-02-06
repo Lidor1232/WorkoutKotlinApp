@@ -5,6 +5,7 @@ import User
 enum class ActiveScreen {
     Login,
     Register,
+    UserWorkouts,
 }
 
 data class MainState(val user: User? = null, val token: String? = null, val activeScreen: ActiveScreen = ActiveScreen.Login)
