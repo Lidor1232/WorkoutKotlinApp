@@ -16,10 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainViewModel
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @Composable
@@ -47,7 +49,11 @@ fun RegisterPreview() {
 
 @Composable
 fun Title() {
-    Text(text = "Register Screen", color = Color.White, modifier = Modifier.padding(bottom = 16.dp))
+    Text(
+        text = "Register Screen",
+        color = Color.White,
+        modifier = Modifier.padding(bottom = 16.dp),
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -113,11 +119,25 @@ fun PasswordInput() {
 
 @Composable
 fun SubmitButton() {
-    val viewModel: RegisterViewModel = viewModel()
-    val state by viewModel.state.observeAsState(RegisterState())
+    val registerViewModel: RegisterViewModel = viewModel()
+    val mainViewModel: MainViewModel = viewModel()
+    val state by registerViewModel.state.observeAsState(RegisterState())
 
     Button(onClick = {
-        Timber.d("FirstName: ${state.firstName}, LastName: ${state.lastName}, UserName ${state.userName}, Password ${state.password}")
+        registerViewModel.viewModelScope.launch {
+            val response = registerViewModel.userRegister(
+                state.firstName,
+                state.lastName,
+                state.userName,
+                state.password,
+            )
+            if (response != null) {
+                mainViewModel.processIntent(MainIntent.SetToken(response.token))
+                mainViewModel.processIntent(MainIntent.SetUser(response.user))
+                mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
+                Timber.d("Register User: ${response}")
+            }
+        }
     }, modifier = Modifier.padding(bottom = 16.dp)) {
         Text(text = "Submit")
     }
