@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.UserLoginRequest
+import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.UserLoginResponse
 
 class LoginViewModel : ViewModel() {
     private val _state = MutableLiveData(LoginState())
@@ -33,16 +34,18 @@ class LoginViewModel : ViewModel() {
     suspend fun userLogin(
         userName: String,
         password: String,
-    ) {
+    ): UserLoginResponse? {
         try {
             processIntent(LoginIntent.SetIsLoading(true))
             processIntent(LoginIntent.SetError(null))
             val body = UserLoginRequest(userName, password)
             val response = ApiClient.apiService.loginUser(body = body)
             processIntent(LoginIntent.SetIsLoading(false))
+            return response
         } catch (e: retrofit2.HttpException) {
             processIntent(LoginIntent.SetIsLoading(false))
             processIntent(LoginIntent.SetError(e.message()))
+            return null
         }
     }
 }
