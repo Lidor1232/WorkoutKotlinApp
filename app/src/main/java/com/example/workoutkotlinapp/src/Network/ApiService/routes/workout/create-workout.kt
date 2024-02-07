@@ -1,7 +1,6 @@
 package com.example.workoutkotlinapp.src.Network.ApiService.routes.workout
 
 import com.example.workoutkotlinapp.src.types.Workout
-import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -24,5 +23,5 @@ interface CreateWorkoutApi {
     @POST("workout")
     suspend fun createWorkout(
         @Body body: CreateWorkoutRequest,
-    ): Call<Workout>
+    ): Workout
 }

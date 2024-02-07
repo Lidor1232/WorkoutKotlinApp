@@ -13,7 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
 import com.example.workoutkotlinapp.src.screens.Login.Login
 import com.example.workoutkotlinapp.src.screens.Register.Register
-import com.example.workoutkotlinapp.src.screens.UserWorkouts
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkouts
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
