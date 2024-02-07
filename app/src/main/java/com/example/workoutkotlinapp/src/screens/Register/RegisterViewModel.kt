@@ -50,7 +50,7 @@ class RegisterViewModel : ViewModel() {
             processIntent(RegisterIntent.SetError(null))
             val body =
                 CreateUserRequest(firstName, lastName, userName, password)
-            val response = ApiClient.apiService.createUser(body = body)
+            val response = ApiClient.apiService(null).createUser(body = body)
             processIntent(RegisterIntent.SetIsLoading(false))
             return response
         } catch (e: retrofit2.HttpException) {

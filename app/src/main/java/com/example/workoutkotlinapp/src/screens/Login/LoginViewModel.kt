@@ -39,7 +39,7 @@ class LoginViewModel : ViewModel() {
             processIntent(LoginIntent.SetIsLoading(true))
             processIntent(LoginIntent.SetError(null))
             val body = UserLoginRequest(userName, password)
-            val response = ApiClient.apiService.loginUser(body = body)
+            val response = ApiClient.apiService(null).loginUser(body = body)
             processIntent(LoginIntent.SetIsLoading(false))
             return response
         } catch (e: retrofit2.HttpException) {

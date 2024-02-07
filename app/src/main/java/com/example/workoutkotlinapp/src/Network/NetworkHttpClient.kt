@@ -3,11 +3,11 @@ package com.example.workoutkotlinapp.src.Network
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-fun getHttpClient(): OkHttpClient {
+fun getHttpClient(token: String?): OkHttpClient {
     val client = OkHttpClient.Builder()
 
     addLoggingInterceptorToHttpClientBuilder(client)
-    addAuthInterceptorToHttpClientBuilder(client)
+    addAuthInterceptorToHttpClientBuilder(client, token)
 
     return client.build()
 }
@@ -20,6 +20,9 @@ fun addLoggingInterceptorToHttpClientBuilder(client: OkHttpClient.Builder) {
     )
 }
 
-fun addAuthInterceptorToHttpClientBuilder(client: OkHttpClient.Builder) {
-    client.addInterceptor(AuthInterceptor())
+fun addAuthInterceptorToHttpClientBuilder(
+    client: OkHttpClient.Builder,
+    token: String?,
+) {
+    client.addInterceptor(AuthInterceptor(token))
 }

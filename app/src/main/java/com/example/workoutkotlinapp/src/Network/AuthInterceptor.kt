@@ -2,14 +2,17 @@ package com.example.workoutkotlinapp.src.Network
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import timber.log.Timber
 
-class AuthInterceptor : Interceptor {
+class AuthInterceptor(private val token: String?) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
-        Timber.d("NETWORK Auth Intercept")
+        val requestBuilder = originalRequest.newBuilder()
+        token?.let { token ->
+            requestBuilder.addHeader("Authorization", "Bearer $token")
+        }
+        val request = requestBuilder.build()
 
-        return chain.proceed(originalRequest)
+        return chain.proceed(request)
     }
 }
