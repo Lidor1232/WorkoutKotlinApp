@@ -23,13 +23,3 @@ fun addLoggingInterceptorToHttpClientBuilder(client: OkHttpClient.Builder) {
 fun addAuthInterceptorToHttpClientBuilder(client: OkHttpClient.Builder) {
     client.addInterceptor(AuthInterceptor())
 }
-
-// fun getLoggingHttpClient(): OkHttpClient {
-//    val builder = OkHttpClient.Builder()
-//    builder.addInterceptor(
-//        HttpLoggingInterceptor().apply {
-//            setLevel(HttpLoggingInterceptor.Level.BODY)
-//        },
-//    )
-//    return builder.build()
-// }
