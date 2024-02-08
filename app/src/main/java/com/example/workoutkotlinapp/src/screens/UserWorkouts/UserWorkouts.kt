@@ -1,15 +1,22 @@
 package com.example.workoutkotlinapp.src.screens.UserWorkouts
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainState
 import com.example.workoutkotlinapp.MainViewModel
+import io.github.boguszpawlowski.composecalendar.SelectableCalendar
+import io.github.boguszpawlowski.composecalendar.rememberSelectableCalendarState
+import io.github.boguszpawlowski.composecalendar.selection.SelectionMode
+import timber.log.Timber
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 
 @Composable()
 fun UserWorkouts() {
@@ -27,7 +34,7 @@ fun UserWorkouts() {
         LoadingHandler()
         ErrorHandler()
         Title()
-        WorkoutsList()
+        WorkoutsCalendar()
     }
 }
 
@@ -57,14 +64,27 @@ fun Title() {
 }
 
 @Composable
-fun WorkoutsList() {
-    val viewModel: UserWorkoutsViewModel = viewModel()
-    val state by viewModel.state.observeAsState(UserWorkoutsState())
+fun WorkoutsCalendar() {
+    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    val parsedDate = LocalDate.parse("20-01-2020", formatter)
 
-    LazyColumn {
-        items(state.workouts.size) {
-                index ->
-            Text(text = "Item num: $index, name: ${state.workouts[index].date}")
-        }
+    val calendarState =
+        rememberSelectableCalendarState(
+            initialMonth = YearMonth.now().plusYears(1),
+            initialSelection = listOf(parsedDate),
+            initialSelectionMode = SelectionMode.Single,
+        )
+
+    LaunchedEffect(calendarState.selectionState) {
+        snapshotFlow { calendarState.selectionState.selection }
+            .collect { selection ->
+                if (selection.isNotEmpty()) {
+                    Timber.d("Selection State: ${selection[0]}")
+                }
+            }
     }
+
+    SelectableCalendar(
+        calendarState = calendarState,
+    )
 }
