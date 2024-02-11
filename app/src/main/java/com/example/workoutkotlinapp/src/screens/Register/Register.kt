@@ -73,7 +73,6 @@ private fun LoadingHandler() {
 private fun Title() {
     Text(
         text = "Register Screen",
-        color = Color.White,
         modifier = Modifier.padding(bottom = 16.dp),
     )
 }

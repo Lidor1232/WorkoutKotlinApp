@@ -68,7 +68,7 @@ fun LoadingHandler() {
 
 @Composable
 fun Title() {
-    Text(text = "Login Screen", modifier = Modifier.padding(bottom = 16.dp), color = Color.White)
+    Text(text = "Login Screen", modifier = Modifier.padding(bottom = 16.dp))
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
