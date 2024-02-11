@@ -7,9 +7,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.snapshotFlow
+import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainState
 import com.example.workoutkotlinapp.MainViewModel
+import com.example.workoutkotlinapp.src.utils.Workout.WorkoutUtil
 import io.github.boguszpawlowski.composecalendar.SelectableCalendar
 import io.github.boguszpawlowski.composecalendar.rememberSelectableCalendarState
 import io.github.boguszpawlowski.composecalendar.selection.SelectionMode
@@ -35,6 +37,7 @@ fun UserWorkouts() {
         ErrorHandler()
         Title()
         WorkoutsCalendar()
+        HandleWorkoutByDate()
     }
 }
 
@@ -67,6 +70,7 @@ fun Title() {
 fun WorkoutsCalendar() {
     val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
     val parsedDate = LocalDate.parse("20-01-2020", formatter)
+    val viewModel: UserWorkoutsViewModel = viewModel()
 
     val calendarState =
         rememberSelectableCalendarState(
@@ -78,13 +82,47 @@ fun WorkoutsCalendar() {
     LaunchedEffect(calendarState.selectionState) {
         snapshotFlow { calendarState.selectionState.selection }
             .collect { selection ->
-                if (selection.isNotEmpty()) {
-                    Timber.d("Selection State: ${selection[0]}")
-                }
+                viewModel.handleDateSelection(selection)
             }
     }
 
     SelectableCalendar(
         calendarState = calendarState,
     )
+}
+
+@Composable
+fun HandleWorkoutByDate() {
+    val viewModel: UserWorkoutsViewModel = viewModel()
+
+    val selectedDate by viewModel.state.map { it.selectedDate }.observeAsState()
+    val workouts by viewModel.state.map { it.workouts }.observeAsState()
+
+    val workout =
+        if (workouts != null && selectedDate != null) {
+            WorkoutUtil.getWorkoutByDate(
+                workouts = workouts!!,
+                date = selectedDate!!,
+            )
+        } else {
+            null
+        }
+
+    Timber.d("WORKOUTHEY $workout")
+
+    if (workout !== null) {
+        WorkoutByDate()
+    } else {
+        NoWorkoutByDate()
+    }
+}
+
+@Composable
+fun WorkoutByDate() {
+    Text(text = "Workout")
+}
+
+@Composable
+fun NoWorkoutByDate() {
+    Text(text = "No Workout")
 }

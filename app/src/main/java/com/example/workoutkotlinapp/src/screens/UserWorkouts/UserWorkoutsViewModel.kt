@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.GetUserWorkoutsResponse
 import timber.log.Timber
+import java.time.LocalDate
 
 class UserWorkoutsViewModel : ViewModel() {
     private val _state = MutableLiveData(UserWorkoutsState())
@@ -25,6 +26,10 @@ class UserWorkoutsViewModel : ViewModel() {
             is UserWorkoutIntent.SetWorkouts -> {
                 _state.value = _state.value?.copy(workouts = intent.workouts)
             }
+
+            is UserWorkoutIntent.SetSelectedDate -> {
+                _state.value = _state.value?.copy(selectedDate = intent.selectedDate)
+            }
         }
     }
 
@@ -38,8 +43,18 @@ class UserWorkoutsViewModel : ViewModel() {
             processIntent(UserWorkoutIntent.SetWorkouts(response.workouts))
             return response
         } catch (e: retrofit2.HttpException) {
+            processIntent(UserWorkoutIntent.SetIsLoading(false))
             processIntent(UserWorkoutIntent.SetError(e.message()))
             return null
+        }
+    }
+
+    fun handleDateSelection(selection: List<LocalDate>) {
+        if (selection.isNotEmpty()) {
+            val selectedDate = selection[0]
+            processIntent(
+                UserWorkoutIntent.SetSelectedDate(selectedDate.toString()),
+            )
         }
     }
 }
