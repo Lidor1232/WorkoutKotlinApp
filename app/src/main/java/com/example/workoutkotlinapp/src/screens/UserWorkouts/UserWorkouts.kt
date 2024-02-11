@@ -1,6 +1,7 @@
 package com.example.workoutkotlinapp.src.screens.UserWorkouts
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -9,6 +10,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.workoutkotlinapp.ActiveScreen
+import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainState
 import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.utils.Workout.WorkoutUtil
@@ -33,11 +36,25 @@ fun UserWorkouts() {
     }
 
     Column {
-        LoadingHandler()
-        ErrorHandler()
-        Title()
-        WorkoutsCalendar()
-        HandleWorkoutByDate()
+        CreateWorkout()
+        Column {
+            LoadingHandler()
+            ErrorHandler()
+            Title()
+            WorkoutsCalendar()
+            HandleWorkoutByDate()
+        }
+    }
+}
+
+@Composable
+fun CreateWorkout() {
+    val mainViewModel: MainViewModel = viewModel()
+
+    Button(onClick = {
+        mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.CreateWorkout))
+    }) {
+        Text(text = "Create Workout")
     }
 }
 

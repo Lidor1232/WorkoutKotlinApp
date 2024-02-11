@@ -6,6 +6,7 @@ enum class ActiveScreen {
     Login,
     Register,
     UserWorkouts,
+    CreateWorkout,
 }
 
 data class MainState(val user: User? = null, val token: String? = null, val activeScreen: ActiveScreen = ActiveScreen.Login)
