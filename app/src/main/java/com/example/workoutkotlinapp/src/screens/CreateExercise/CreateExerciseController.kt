@@ -23,5 +23,6 @@ class CreateExerciseController(
                 CreateWorkoutIntent.AddExercise(ICreateExercise(sets = sets, name = name)),
             )
         }
+        createExerciseViewModel.processIntent(CreateExerciseIntent.Reset)
     }
 }
