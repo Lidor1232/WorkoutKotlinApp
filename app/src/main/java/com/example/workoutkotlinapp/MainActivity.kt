@@ -11,6 +11,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
+import com.example.workoutkotlinapp.src.screens.CreateExercise.CreateExercise
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkout
 import com.example.workoutkotlinapp.src.screens.Login.Login
 import com.example.workoutkotlinapp.src.screens.Register.Register
@@ -75,6 +76,10 @@ class MainActivity : ComponentActivity() {
 
                         ActiveScreen.CreateWorkout -> {
                             CreateWorkout()
+                        }
+
+                        ActiveScreen.CreateExercise -> {
+                            CreateExercise()
                         }
                     }
                 }

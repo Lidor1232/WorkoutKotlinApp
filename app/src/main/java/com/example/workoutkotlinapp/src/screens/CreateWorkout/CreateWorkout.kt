@@ -13,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.workoutkotlinapp.ActiveScreen
+import com.example.workoutkotlinapp.MainIntent
+import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.utils.Date.DateUtil
 
 @Composable
@@ -79,7 +82,11 @@ fun Exercises() {
 
 @Composable
 fun AddExerciseButton() {
-    Button(onClick = { }) {
+    val viewModel: MainViewModel = viewModel()
+
+    Button(onClick = {
+        viewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.CreateExercise))
+    }) {
         Text(text = "Add Exercise")
     }
 }

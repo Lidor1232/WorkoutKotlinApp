@@ -1,6 +1,7 @@
 package com.example.workoutkotlinapp.src.koin
 
 import com.example.workoutkotlinapp.MainViewModel
+import com.example.workoutkotlinapp.src.screens.CreateExercise.CreateExerciseViewModel
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkoutViewModel
 import com.example.workoutkotlinapp.src.screens.Login.LoginViewModel
 import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
@@ -16,5 +17,6 @@ val appModule =
             RegisterViewModel()
             UserWorkoutsViewModel()
             CreateWorkoutViewModel()
+            CreateExerciseViewModel()
         }
     }
