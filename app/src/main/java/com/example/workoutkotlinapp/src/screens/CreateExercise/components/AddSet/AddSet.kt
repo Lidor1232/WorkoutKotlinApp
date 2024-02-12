@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.CreateExercise.AddSet
+package com.example.workoutkotlinapp.src.screens.CreateExercise.components.AddSet
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -99,6 +99,7 @@ fun SubmitButton() {
                     set = ExerciseSet(weight = weight!!.toInt(), reps = reps!!.toInt()),
                 ),
             )
+            createExerciseViewModel.processIntent(CreateExerciseIntent.AddSetReset)
         }
         createExerciseViewModel.processIntent(CreateExerciseIntent.AddSetReset)
     }) {

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
-import com.example.workoutkotlinapp.src.Network.ApiService.routes.workout.CreateExercise
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.workout.CreateWorkoutRequest
+import com.example.workoutkotlinapp.src.Network.ApiService.routes.workout.ICreateExercise
 import com.example.workoutkotlinapp.src.types.Workout
 
 class CreateWorkoutViewModel : ViewModel() {
@@ -36,7 +36,7 @@ class CreateWorkoutViewModel : ViewModel() {
 
     suspend fun createWorkout(
         date: String,
-        exercises: List<CreateExercise>,
+        exercises: List<ICreateExercise>,
         userToken: String,
     ): Workout? {
         try {
