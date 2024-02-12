@@ -13,4 +13,6 @@ sealed class CreateWorkoutIntent() {
     data class SetIsLoading(val isLoading: Boolean) : CreateWorkoutIntent()
 
     data class SetError(val error: String?) : CreateWorkoutIntent()
+
+    object Reset : CreateWorkoutIntent()
 }

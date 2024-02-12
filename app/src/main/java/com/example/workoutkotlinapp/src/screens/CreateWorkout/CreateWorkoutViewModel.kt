@@ -31,6 +31,10 @@ class CreateWorkoutViewModel : ViewModel() {
             is CreateWorkoutIntent.SetError -> {
                 _state.value = _state.value?.copy(error = intent.error)
             }
+
+            is CreateWorkoutIntent.Reset -> {
+                _state.value = CreateWorkoutState()
+            }
         }
     }
 
