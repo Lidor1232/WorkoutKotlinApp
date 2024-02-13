@@ -40,14 +40,13 @@ fun WorkoutsCalendar() {
         calendarState = calendarState,
         dayContent = {
                 dayState ->
-            val isDateHasWorkout =
-                workoutCalendarController.isDateHasWorkout(
+            val workout =
+                workoutCalendarController.getWorkoutByDate(
                     dayState.date,
                     workouts,
                 )
-
-            if (isDateHasWorkout) {
-                DateWithWorkout(dayState)
+            if (workout !== null) {
+                DateWithWorkout(dayState, workout)
             } else {
                 DateWithoutWorkout(dayState)
             }

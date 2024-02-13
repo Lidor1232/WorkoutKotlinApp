@@ -16,6 +16,7 @@ import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkout
 import com.example.workoutkotlinapp.src.screens.Login.Login
 import com.example.workoutkotlinapp.src.screens.Register.Register
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkouts
+import com.example.workoutkotlinapp.src.screens.WorkoutDetails.WorkoutDetails
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -80,6 +81,10 @@ class MainActivity : ComponentActivity() {
 
                         ActiveScreen.CreateExercise -> {
                             CreateExercise()
+                        }
+
+                        ActiveScreen.WorkoutDetails -> {
+                            WorkoutDetails()
                         }
                     }
                 }
