@@ -3,6 +3,8 @@ package com.example.workoutkotlinapp.src.utils.Date
 import android.app.DatePickerDialog
 import android.content.Context
 import android.icu.util.Calendar
+import java.time.LocalDate
+import java.time.ZonedDateTime
 import java.util.Date
 
 object DateUtil {
@@ -34,5 +36,9 @@ object DateUtil {
             )
 
         datePickerDialog.show()
+    }
+
+    fun parseToLocalDate(date: String): LocalDate {
+        return ZonedDateTime.parse(date).toLocalDate()
     }
 }

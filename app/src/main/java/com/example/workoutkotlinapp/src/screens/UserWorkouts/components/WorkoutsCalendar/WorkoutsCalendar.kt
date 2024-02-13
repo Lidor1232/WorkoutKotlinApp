@@ -2,27 +2,30 @@ package com.example.workoutkotlinapp.src.screens.UserWorkouts.components.Workout
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.snapshotFlow
+import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkoutsViewModel
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.DateWithWorkout.DateWithWorkout
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.DateWithoutWorkout.DateWithoutWorkout
 import io.github.boguszpawlowski.composecalendar.SelectableCalendar
 import io.github.boguszpawlowski.composecalendar.rememberSelectableCalendarState
 import io.github.boguszpawlowski.composecalendar.selection.SelectionMode
-import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.DateTimeFormatter
 
 @Composable
 fun WorkoutsCalendar() {
+    val workoutCalendarController = WorkoutCalendarController()
+
     val viewModel: UserWorkoutsViewModel = viewModel()
 
-    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-    val parsedDate = LocalDate.parse("20-01-2020", formatter)
+    val workouts by viewModel.state.map { it.workouts }.observeAsState()
 
     val calendarState =
         rememberSelectableCalendarState(
-            initialMonth = YearMonth.now().plusYears(1),
-            initialSelection = listOf(parsedDate),
+            initialMonth = YearMonth.now(),
             initialSelectionMode = SelectionMode.Single,
         )
 
@@ -35,5 +38,19 @@ fun WorkoutsCalendar() {
 
     SelectableCalendar(
         calendarState = calendarState,
+        dayContent = {
+                dayState ->
+            val isDateHasWorkout =
+                workoutCalendarController.isDateHasWorkout(
+                    dayState.date,
+                    workouts,
+                )
+
+            if (isDateHasWorkout) {
+                DateWithWorkout(dayState)
+            } else {
+                DateWithoutWorkout(dayState)
+            }
+        },
     )
 }
