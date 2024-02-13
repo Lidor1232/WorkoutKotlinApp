@@ -8,19 +8,30 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.Login.LoginIntent
-import com.example.workoutkotlinapp.src.screens.Login.LoginState
 import com.example.workoutkotlinapp.src.screens.Login.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordInput() {
-    val viewModel: LoginViewModel = viewModel()
-    val state by viewModel.state.observeAsState(LoginState())
+    val loginViewModel: LoginViewModel = viewModel()
 
-    TextField(value = state.password, onValueChange = {
-            text ->
-        viewModel.processIntent(LoginIntent.SetPassword(text))
-    }, modifier = Modifier.padding(bottom = 16.dp))
+    val passwordInputController =
+        PasswordInputController(
+            loginViewModel,
+        )
+
+    val password by loginViewModel.state.map { it.password }.observeAsState()
+
+    if (password !== null) {
+        TextField(
+            value = password!!,
+            onValueChange = {
+                    text ->
+                passwordInputController.onPasswordInputChange(text)
+            },
+            modifier = Modifier.padding(bottom = 16.dp),
+        )
+    }
 }
