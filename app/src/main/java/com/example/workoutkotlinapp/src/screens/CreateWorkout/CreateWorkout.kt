@@ -7,6 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.workoutkotlinapp.MainViewModel
+import com.example.workoutkotlinapp.src.components.Buttons.BackButton.BackButton
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.AddExerciseButton.AddExerciseButton
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Date.Date
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Exercises.Exercises
@@ -15,16 +18,28 @@ import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Title.T
 
 @Composable
 fun CreateWorkout() {
-    Column(
-        modifier =
-            Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Title()
-        Date()
-        Exercises()
-        AddExerciseButton()
-        SubmitButton()
+    val mainViewModel: MainViewModel = viewModel()
+
+    val createWorkoutController =
+        CreateWorkoutController(
+            mainViewModel,
+        )
+
+    Column {
+        BackButton(
+            onClick = { createWorkoutController.goBack() },
+        )
+        Column(
+            modifier =
+                Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Title()
+            Date()
+            Exercises()
+            AddExerciseButton()
+            SubmitButton()
+        }
     }
 }
