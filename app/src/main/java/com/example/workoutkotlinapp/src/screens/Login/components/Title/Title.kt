@@ -8,5 +8,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Title() {
-    Text(text = "Login Screen", modifier = Modifier.padding(bottom = 16.dp))
+    Text(
+        modifier = Modifier.padding(bottom = 16.dp),
+        text = "Login Screen",
+    )
 }

@@ -8,19 +8,20 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.Register.RegisterState
 import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
 
 @Composable()
 fun ErrorHandler() {
     val viewModel: RegisterViewModel = viewModel()
-    val state by viewModel.state.observeAsState(RegisterState())
 
-    if (state.error != null) {
+    val error by viewModel.state.map { it.error }.observeAsState()
+
+    if (error != null) {
         Text(
-            text = "${state.error}",
             modifier = Modifier.padding(bottom = 16.dp),
+            text = "$error",
             color = Color.Red,
         )
     }

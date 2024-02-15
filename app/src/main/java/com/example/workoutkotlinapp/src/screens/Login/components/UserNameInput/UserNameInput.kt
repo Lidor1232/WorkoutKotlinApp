@@ -2,6 +2,7 @@ package com.example.workoutkotlinapp.src.screens.Login.components.UserNameInput
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,12 +27,15 @@ fun UserNameInput() {
 
     if (userName !== null) {
         TextField(
+            modifier = Modifier.padding(bottom = 16.dp),
             value = userName!!,
             onValueChange = {
                     text ->
                 userNameInputController.onChangeUserNameInput(text)
             },
-            modifier = Modifier.padding(bottom = 16.dp),
+            placeholder = {
+                Text("Username")
+            },
         )
     }
 }

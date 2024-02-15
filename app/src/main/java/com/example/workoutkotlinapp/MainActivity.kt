@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
 import com.example.workoutkotlinapp.src.screens.CreateExercise.CreateExercise
@@ -60,31 +61,34 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background,
                 ) {
                     val viewModel: MainViewModel = viewModel()
-                    val state by viewModel.state.observeAsState(MainState())
 
-                    when (state.activeScreen) {
-                        ActiveScreen.Login -> {
-                            Login()
-                        }
+                    val activeScreen by viewModel.state.map { it.activeScreen }.observeAsState()
 
-                        ActiveScreen.Register -> {
-                            Register()
-                        }
+                    if (activeScreen !== null) {
+                        when (activeScreen!!) {
+                            ActiveScreen.Login -> {
+                                Login()
+                            }
 
-                        ActiveScreen.UserWorkouts -> {
-                            UserWorkouts()
-                        }
+                            ActiveScreen.Register -> {
+                                Register()
+                            }
 
-                        ActiveScreen.CreateWorkout -> {
-                            CreateWorkout()
-                        }
+                            ActiveScreen.UserWorkouts -> {
+                                UserWorkouts()
+                            }
 
-                        ActiveScreen.CreateExercise -> {
-                            CreateExercise()
-                        }
+                            ActiveScreen.CreateWorkout -> {
+                                CreateWorkout()
+                            }
 
-                        ActiveScreen.WorkoutDetails -> {
-                            WorkoutDetails()
+                            ActiveScreen.CreateExercise -> {
+                                CreateExercise()
+                            }
+
+                            ActiveScreen.WorkoutDetails -> {
+                                WorkoutDetails()
+                            }
                         }
                     }
                 }

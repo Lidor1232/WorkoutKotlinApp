@@ -19,8 +19,8 @@ fun LoadingHandler() {
 
     if (isLoading === true) {
         Text(
-            text = "Loading...",
             modifier = Modifier.padding(bottom = 16.dp),
+            text = "Loading...",
         )
     }
 }
