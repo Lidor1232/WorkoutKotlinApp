@@ -12,7 +12,9 @@ import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.components.Buttons.BackButton.BackButton
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.AddExerciseButton.AddExerciseButton
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Date.Date
+import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.ErrorHandler.ErrorHandler
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Exercises.Exercises
+import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.LoadingHandler.LoadingHandler
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.SubmitButton.SubmitButton
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Title.Title
 
@@ -35,6 +37,8 @@ fun CreateWorkout() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            LoadingHandler()
+            ErrorHandler()
             Title()
             Date()
             Exercises()
