@@ -1,7 +1,6 @@
 package com.example.workoutkotlinapp.src.Network.ApiService.routes.user
 
 import User
-import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -21,5 +20,5 @@ interface CreateUserApi {
     @POST("user/create")
     suspend fun createUser(
         @Body body: CreateUserRequest,
-    ): Call<CreateUserResponse>
+    ): CreateUserResponse
 }

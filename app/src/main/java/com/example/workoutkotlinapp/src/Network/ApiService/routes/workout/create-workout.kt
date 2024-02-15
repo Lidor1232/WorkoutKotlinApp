@@ -1,28 +1,23 @@
 package com.example.workoutkotlinapp.src.Network.ApiService.routes.workout
 
+import com.example.workoutkotlinapp.src.types.ExerciseSet
 import com.example.workoutkotlinapp.src.types.Workout
-import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-data class CreateSet(
-    val weight: Int,
-    val reps: Int,
-)
-
-data class CreateExercise(
+data class ICreateExercise(
     val name: String,
-    val sets: List<CreateSet>,
+    val sets: List<ExerciseSet>,
 )
 
 data class CreateWorkoutRequest(
     val date: String,
-    val exercises: List<CreateExercise>,
+    val exercises: List<ICreateExercise>,
 )
 
 interface CreateWorkoutApi {
     @POST("workout")
     suspend fun createWorkout(
         @Body body: CreateWorkoutRequest,
-    ): Call<Workout>
+    ): Workout
 }

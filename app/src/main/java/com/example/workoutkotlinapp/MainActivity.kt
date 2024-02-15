@@ -6,9 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
+import com.example.workoutkotlinapp.src.screens.CreateExercise.CreateExercise
+import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkout
 import com.example.workoutkotlinapp.src.screens.Login.Login
+import com.example.workoutkotlinapp.src.screens.Register.Register
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkouts
+import com.example.workoutkotlinapp.src.screens.WorkoutDetails.WorkoutDetails
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -51,7 +59,34 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Login()
+                    val viewModel: MainViewModel = viewModel()
+                    val state by viewModel.state.observeAsState(MainState())
+
+                    when (state.activeScreen) {
+                        ActiveScreen.Login -> {
+                            Login()
+                        }
+
+                        ActiveScreen.Register -> {
+                            Register()
+                        }
+
+                        ActiveScreen.UserWorkouts -> {
+                            UserWorkouts()
+                        }
+
+                        ActiveScreen.CreateWorkout -> {
+                            CreateWorkout()
+                        }
+
+                        ActiveScreen.CreateExercise -> {
+                            CreateExercise()
+                        }
+
+                        ActiveScreen.WorkoutDetails -> {
+                            WorkoutDetails()
+                        }
+                    }
                 }
             }
         }

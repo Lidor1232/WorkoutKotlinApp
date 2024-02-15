@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.workoutkotlinapp"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -46,6 +46,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
@@ -79,5 +80,16 @@ dependencies {
 
 // Network Logging
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+
+    // Calendar
+    implementation "io.github.boguszpawlowski.composecalendar:composecalendar:1.2.0"
+
+    // separate artifact with utilities for working with kotlinx-datetime
+    implementation "io.github.boguszpawlowski.composecalendar:kotlinx-datetime:1.2.0"
+
 
 }
