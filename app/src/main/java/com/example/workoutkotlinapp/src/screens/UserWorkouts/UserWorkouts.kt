@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
-import com.example.workoutkotlinapp.src.screens.Login.ErrorHandler
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.CreateWorkoutButton.CreateWorkoutButton
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.ErrorHandler.ErrorHandler
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LoadingHandler.LoadingHandler
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.WorkoutsCalendar
 
