@@ -1,5 +1,6 @@
-package com.example.workoutkotlinapp.src.Network
+package com.example.workoutkotlinapp.src.Network.NetworkHttpClient
 
+import com.example.workoutkotlinapp.src.Network.NetworkHttpClient.AuthInterceptor.AuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 

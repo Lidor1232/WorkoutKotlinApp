@@ -2,19 +2,7 @@
 package com.example.workoutkotlinapp.src.Network
 
 import com.example.workoutkotlinapp.src.Network.ApiService.ApiService
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
-fun retrofitClient(token: String?): Retrofit {
-    val baseUrl = "http://192.168.182.95:3000/"
-    val retrofit: Retrofit by lazy {
-        Retrofit.Builder().client(getHttpClient(token))
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-    return retrofit
-}
+import com.example.workoutkotlinapp.src.Network.RetrofitClient.retrofitClient
 
 object ApiClient {
     fun apiService(token: String?): ApiService {
