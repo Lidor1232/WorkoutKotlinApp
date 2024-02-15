@@ -28,9 +28,12 @@ fun SubmitButton() {
     val password by loginViewModel.state.map { it.password }.observeAsState()
 
     if (userName !== null && password !== null) {
-        Button(onClick = {
-            submitButtonController.onSubmit(userName, password)
-        }, modifier = Modifier.padding(bottom = 16.dp)) {
+        Button(
+            modifier = Modifier.padding(bottom = 16.dp),
+            onClick = {
+                submitButtonController.onSubmit(userName, password)
+            },
+        ) {
             Text(text = "Submit")
         }
     }

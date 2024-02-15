@@ -27,12 +27,12 @@ fun UserNameInput() {
 
     if (userName !== null) {
         TextField(
+            modifier = Modifier.padding(bottom = 16.dp),
             value = userName!!,
             onValueChange = {
                     text ->
                 userNameInputController.onChangeUserNameInput(text)
             },
-            modifier = Modifier.padding(bottom = 16.dp),
             placeholder = {
                 Text("Username")
             },

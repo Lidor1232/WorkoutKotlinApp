@@ -10,20 +10,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.Login.LoginState
 import com.example.workoutkotlinapp.src.screens.Login.LoginViewModel
 
 @Composable
 fun ErrorHandler() {
     val viewModel: LoginViewModel = viewModel()
-    val state by viewModel.state.observeAsState(LoginState())
 
     val error by viewModel.state.map { it.error }.observeAsState()
 
     if (error != null) {
         Text(
-            text = "${state.error}",
             modifier = Modifier.padding(bottom = 16.dp),
+            text = "$error",
             color = Color.Red,
         )
     }

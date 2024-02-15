@@ -27,12 +27,12 @@ fun PasswordInput() {
 
     if (password !== null) {
         TextField(
+            modifier = Modifier.padding(bottom = 16.dp),
             value = password!!,
             onValueChange = {
                     text ->
                 passwordInputController.onPasswordInputChange(text)
             },
-            modifier = Modifier.padding(bottom = 16.dp),
             placeholder = {
                 Text("Password")
             },
