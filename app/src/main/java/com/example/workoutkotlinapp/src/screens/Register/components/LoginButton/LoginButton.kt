@@ -10,10 +10,12 @@ import com.example.workoutkotlinapp.MainViewModel
 
 @Composable
 fun LoginButton() {
-    val viewModel: MainViewModel = viewModel()
+    val mainViewModel: MainViewModel = viewModel()
+
+    val loginButtonController = LoginButtonController(mainViewModel)
 
     Button(onClick = {
-        viewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.Login))
+        loginButtonController.onClick()
     }) {
         Text(text = "Login")
     }

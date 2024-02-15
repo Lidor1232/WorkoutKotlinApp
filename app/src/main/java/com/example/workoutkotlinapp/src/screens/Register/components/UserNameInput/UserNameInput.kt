@@ -9,21 +9,30 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.Register.RegisterIntent
-import com.example.workoutkotlinapp.src.screens.Register.RegisterState
 import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserNameInput() {
-    val viewModel: RegisterViewModel = viewModel()
-    val state by viewModel.state.observeAsState(RegisterState())
+    val registerViewModel: RegisterViewModel = viewModel()
 
-    TextField(value = state.userName, onValueChange = {
-            text ->
-        viewModel.processIntent(RegisterIntent.SetUserName(text))
-    }, modifier = Modifier.padding(bottom = 16.dp), placeholder = {
-        Text("User Name")
-    })
+    val userNameInputController = UserNameInputController(registerViewModel)
+
+    val userName by registerViewModel.state.map { it.userName }.observeAsState()
+
+    if (userName !== null) {
+        TextField(
+            modifier = Modifier.padding(bottom = 16.dp),
+            value = userName!!,
+            placeholder = {
+                Text("User Name")
+            },
+            onValueChange = {
+                    text ->
+                userNameInputController.onUserNameInputChange(text)
+            },
+        )
+    }
 }
