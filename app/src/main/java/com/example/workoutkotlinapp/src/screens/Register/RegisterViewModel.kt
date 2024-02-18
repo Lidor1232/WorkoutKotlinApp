@@ -36,6 +36,10 @@ class RegisterViewModel : ViewModel() {
             is RegisterIntent.SetError -> {
                 _state.value = _state.value?.copy(error = intent.error)
             }
+
+            is RegisterIntent.Reset -> {
+                _state.value = RegisterState()
+            }
         }
     }
 
