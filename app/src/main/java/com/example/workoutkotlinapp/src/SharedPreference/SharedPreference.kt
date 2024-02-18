@@ -10,7 +10,7 @@ class SharedPreferencesManager(private val context: Context) {
 
     private val sharedPreferences: SharedPreferences get() = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
 
-    fun updateToken(token: String) {
+    fun updateToken(token: String?) {
         with(sharedPreferences.edit()) {
             putString(TOKEN_KEY, token)
             apply()

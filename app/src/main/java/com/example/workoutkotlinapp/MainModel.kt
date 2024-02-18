@@ -21,7 +21,7 @@ sealed class MainIntent() {
 
     data class GetUserSetError(val error: String?) : MainIntent()
 
-    data class GetUserSetUser(val user: User) : MainIntent()
+    data class GetUserSetUser(val user: User?) : MainIntent()
 
     data class SetToken(val token: String?) : MainIntent()
 

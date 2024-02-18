@@ -14,6 +14,7 @@ import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.CreateWorkoutButton.CreateWorkoutButton
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.ErrorHandler.ErrorHandler
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LoadingHandler.LoadingHandler
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LogoutButton.LogoutButton
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.WorkoutsCalendar
 
 @Composable()
@@ -35,6 +36,7 @@ fun UserWorkouts() {
                 .fillMaxSize(),
     ) {
         CreateWorkoutButton()
+        LogoutButton()
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.Center,
