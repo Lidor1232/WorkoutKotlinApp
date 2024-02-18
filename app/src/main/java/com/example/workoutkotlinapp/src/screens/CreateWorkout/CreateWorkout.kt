@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,11 +22,18 @@ import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Title.T
 @Composable
 fun CreateWorkout() {
     val mainViewModel: MainViewModel = viewModel()
+    val createWorkoutViewModel: CreateWorkoutViewModel = viewModel()
 
     val createWorkoutController =
         CreateWorkoutController(
             mainViewModel,
         )
+
+    DisposableEffect(Unit) {
+        onDispose {
+            createWorkoutViewModel.processIntent(CreateWorkoutIntent.Reset)
+        }
+    }
 
     Column {
         BackButton(

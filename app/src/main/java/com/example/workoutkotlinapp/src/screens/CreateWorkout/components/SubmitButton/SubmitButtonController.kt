@@ -4,7 +4,6 @@ import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.workout.ICreateExercise
-import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkoutIntent
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkoutViewModel
 import java.util.Date
 
@@ -19,7 +18,6 @@ class SubmitButtonController(
     ) {
         if (date !== null && userToken !== null) {
             createWorkoutViewModel.createWorkout(date.toString(), exercises, userToken)
-            createWorkoutViewModel.processIntent(CreateWorkoutIntent.Reset)
             mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
         }
     }
