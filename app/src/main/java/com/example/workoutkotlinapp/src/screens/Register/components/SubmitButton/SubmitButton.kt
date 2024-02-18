@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.SharedPreference.SharedPreferencesManager
 import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
+import kotlinx.coroutines.flow.map
 
 @Composable
 fun SubmitButton() {
@@ -29,19 +30,17 @@ fun SubmitButton() {
             mainViewModel,
         )
 
-    val firstName by registerViewModel.state.map { it.firstName }.observeAsState()
-    val lastName by registerViewModel.state.map { it.lastName }.observeAsState()
-    val userName by registerViewModel.state.map { it.userName }.observeAsState()
-    val password by registerViewModel.state.map { it.password }.observeAsState()
+    val firstName by registerViewModel.state.map { it.firstName }.collectAsState(initial = "")
+    val lastName by registerViewModel.state.map { it.lastName }.collectAsState(initial = "")
+    val userName by registerViewModel.state.map { it.userName }.collectAsState(initial = "")
+    val password by registerViewModel.state.map { it.password }.collectAsState(initial = "")
 
-    if (firstName !== null && lastName !== null && userName !== null && password !== null) {
-        Button(
-            modifier = Modifier.padding(bottom = 16.dp),
-            onClick = {
-                submitButtonController.onClick(firstName!!, lastName!!, userName!!, password!!, sharedPreferencesManager)
-            },
-        ) {
-            Text(text = "Submit")
-        }
+    Button(
+        modifier = Modifier.padding(bottom = 16.dp),
+        onClick = {
+            submitButtonController.onClick(firstName, lastName, userName, password, sharedPreferencesManager)
+        },
+    ) {
+        Text(text = "Submit")
     }
 }

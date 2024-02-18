@@ -1,44 +1,59 @@
 package com.example.workoutkotlinapp.src.screens.Register
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.CreateUserRequest
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.CreateUserResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class RegisterViewModel : ViewModel() {
-    private val _state = MutableLiveData(RegisterState())
-    val state: LiveData<RegisterState> get() = _state
+    private val _state = MutableStateFlow(RegisterState())
+    val state: StateFlow<RegisterState> = _state
 
     fun processIntent(intent: RegisterIntent) {
         when (intent) {
             is RegisterIntent.SetFirstName -> {
-                _state.value = _state.value?.copy(firstName = intent.firstName)
+                _state.update {
+                    it.copy(firstName = intent.firstName)
+                }
             }
 
             is RegisterIntent.SetLastName -> {
-                _state.value = _state.value?.copy(lastName = intent.lastName)
+                _state.update {
+                    it.copy(lastName = intent.lastName)
+                }
             }
 
             is RegisterIntent.SetUserName -> {
-                _state.value = _state.value?.copy(userName = intent.userName)
+                _state.update {
+                    it.copy(userName = intent.userName)
+                }
             }
 
             is RegisterIntent.SetPassword -> {
-                _state.value = _state.value?.copy(password = intent.password)
+                _state.update {
+                    it.copy(password = intent.password)
+                }
             }
 
             is RegisterIntent.SetIsLoading -> {
-                _state.value = _state.value?.copy(isLoading = intent.isLoading)
+                _state.update {
+                    it.copy(isLoading = intent.isLoading)
+                }
             }
 
             is RegisterIntent.SetError -> {
-                _state.value = _state.value?.copy(error = intent.error)
+                _state.update {
+                    it.copy(error = intent.error)
+                }
             }
 
             is RegisterIntent.Reset -> {
-                _state.value = RegisterState()
+                _state.update {
+                    RegisterState()
+                }
             }
         }
     }
