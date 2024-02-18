@@ -10,4 +10,6 @@ sealed class LoginIntent {
     data class SetIsLoading(val isLoading: Boolean) : LoginIntent()
 
     data class SetError(val error: String?) : LoginIntent()
+
+    object Reset : LoginIntent()
 }
