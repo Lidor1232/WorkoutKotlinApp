@@ -7,14 +7,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
+import com.example.workoutkotlinapp.src.SharedPreference.SharedPreferencesManager
 import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
 
 @Composable
 fun SubmitButton() {
+    val context = LocalContext.current
+    val sharedPreferencesManager = SharedPreferencesManager(context)
+
     val registerViewModel: RegisterViewModel = viewModel()
     val mainViewModel: MainViewModel = viewModel()
 
@@ -33,7 +38,7 @@ fun SubmitButton() {
         Button(
             modifier = Modifier.padding(bottom = 16.dp),
             onClick = {
-                submitButtonController.onClick(firstName!!, lastName!!, userName!!, password!!)
+                submitButtonController.onClick(firstName!!, lastName!!, userName!!, password!!, sharedPreferencesManager)
             },
         ) {
             Text(text = "Submit")
