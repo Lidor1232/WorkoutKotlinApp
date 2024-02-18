@@ -4,9 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainViewModel
+import com.example.workoutkotlinapp.src.SharedPreference.SharedPreferencesManager
 import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class SubmitButtonController(
     private val registerViewModel: RegisterViewModel,
@@ -17,6 +17,7 @@ class SubmitButtonController(
         lastName: String,
         userName: String,
         password: String,
+        sharedPreferencesManager: SharedPreferencesManager,
     ) {
         registerViewModel.viewModelScope.launch {
             val response =
@@ -28,9 +29,9 @@ class SubmitButtonController(
                 )
             if (response != null) {
                 mainViewModel.processIntent(MainIntent.SetToken(response.token))
-                mainViewModel.processIntent(MainIntent.SetUser(response.user))
+                mainViewModel.processIntent(MainIntent.GetUserSetUser(response.user))
                 mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
-                Timber.d("Register User: $response")
+                sharedPreferencesManager.updateToken(response.token)
             }
         }
     }

@@ -21,10 +21,12 @@ import com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Title.T
 @Composable
 fun CreateWorkout() {
     val mainViewModel: MainViewModel = viewModel()
+    val createWorkoutViewModel: CreateWorkoutViewModel = viewModel()
 
     val createWorkoutController =
         CreateWorkoutController(
             mainViewModel,
+            createWorkoutViewModel,
         )
 
     Column {

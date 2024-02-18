@@ -28,6 +28,10 @@ class LoginViewModel : ViewModel() {
             is LoginIntent.SetError -> {
                 _state.value = _state.value?.copy(error = intent.error)
             }
+
+            is LoginIntent.Reset -> {
+                _state.value = LoginState()
+            }
         }
     }
 

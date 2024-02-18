@@ -34,8 +34,8 @@ fun SubmitButton() {
         coroutineScope.launch {
             submitButtonController.onSubmit(
                 date = date,
-                exercises = exercises!!,
-                userToken = userToken!!,
+                exercises = exercises,
+                userToken = userToken,
             )
         }
     }) {

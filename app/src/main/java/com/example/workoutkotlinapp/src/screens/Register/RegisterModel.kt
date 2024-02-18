@@ -29,4 +29,6 @@ sealed class RegisterIntent {
     data class SetIsLoading(val isLoading: Boolean) : RegisterIntent()
 
     data class SetError(val error: String?) : RegisterIntent()
+
+    object Reset : RegisterIntent()
 }

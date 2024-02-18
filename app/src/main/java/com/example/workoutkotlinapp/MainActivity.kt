@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
 import com.example.workoutkotlinapp.src.screens.CreateExercise.CreateExercise
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkout
+import com.example.workoutkotlinapp.src.screens.Loading.Loading
 import com.example.workoutkotlinapp.src.screens.Login.Login
 import com.example.workoutkotlinapp.src.screens.Register.Register
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkouts
@@ -66,29 +67,13 @@ class MainActivity : ComponentActivity() {
 
                     if (activeScreen !== null) {
                         when (activeScreen!!) {
-                            ActiveScreen.Login -> {
-                                Login()
-                            }
-
-                            ActiveScreen.Register -> {
-                                Register()
-                            }
-
-                            ActiveScreen.UserWorkouts -> {
-                                UserWorkouts()
-                            }
-
-                            ActiveScreen.CreateWorkout -> {
-                                CreateWorkout()
-                            }
-
-                            ActiveScreen.CreateExercise -> {
-                                CreateExercise()
-                            }
-
-                            ActiveScreen.WorkoutDetails -> {
-                                WorkoutDetails()
-                            }
+                            ActiveScreen.Login -> Login()
+                            ActiveScreen.Register -> Register()
+                            ActiveScreen.UserWorkouts -> UserWorkouts()
+                            ActiveScreen.CreateWorkout -> CreateWorkout()
+                            ActiveScreen.CreateExercise -> CreateExercise()
+                            ActiveScreen.WorkoutDetails -> WorkoutDetails()
+                            ActiveScreen.Loading -> Loading()
                         }
                     }
                 }

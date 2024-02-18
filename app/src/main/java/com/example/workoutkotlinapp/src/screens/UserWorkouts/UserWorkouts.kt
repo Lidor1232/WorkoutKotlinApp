@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -14,18 +15,25 @@ import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.CreateWorkoutButton.CreateWorkoutButton
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.ErrorHandler.ErrorHandler
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LoadingHandler.LoadingHandler
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LogoutButton.LogoutButton
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.WorkoutsCalendar
 
 @Composable()
 fun UserWorkouts() {
-    val viewModel: UserWorkoutsViewModel = viewModel()
+    val userWorkoutsViewModel: UserWorkoutsViewModel = viewModel()
     val mainViewModel: MainViewModel = viewModel()
 
     val token by mainViewModel.state.map { it.token }.observeAsState()
 
-    LaunchedEffect(viewModel) {
+    DisposableEffect(Unit) {
+        onDispose {
+            userWorkoutsViewModel.processIntent(UserWorkoutsIntent.Reset)
+        }
+    }
+
+    LaunchedEffect(userWorkoutsViewModel) {
         if (token != null) {
-            viewModel.getUserWorkouts(token!!)
+            userWorkoutsViewModel.getUserWorkouts(token!!)
         }
     }
 
@@ -35,6 +43,7 @@ fun UserWorkouts() {
                 .fillMaxSize(),
     ) {
         CreateWorkoutButton()
+        LogoutButton()
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.Center,

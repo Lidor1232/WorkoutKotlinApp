@@ -1,6 +1,5 @@
 package com.example.workoutkotlinapp.src.screens.UserWorkouts
 
-import androidx.compose.runtime.getValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,38 +12,42 @@ class UserWorkoutsViewModel : ViewModel() {
     private val _state = MutableLiveData(UserWorkoutsState())
     val state: LiveData<UserWorkoutsState> get() = _state
 
-    fun processIntent(intent: UserWorkoutIntent) {
+    fun processIntent(intent: UserWorkoutsIntent) {
         when (intent) {
-            is UserWorkoutIntent.SetIsLoading -> {
+            is UserWorkoutsIntent.SetIsLoading -> {
                 _state.value = _state.value?.copy(isLoading = intent.isLoading)
             }
 
-            is UserWorkoutIntent.SetError -> {
+            is UserWorkoutsIntent.SetError -> {
                 _state.value = _state.value?.copy(error = intent.error)
             }
 
-            is UserWorkoutIntent.SetWorkouts -> {
+            is UserWorkoutsIntent.SetWorkouts -> {
                 _state.value = _state.value?.copy(workouts = intent.workouts)
             }
 
-            is UserWorkoutIntent.SetSelectedDate -> {
+            is UserWorkoutsIntent.SetSelectedDate -> {
                 _state.value = _state.value?.copy(selectedDate = intent.selectedDate)
+            }
+
+            is UserWorkoutsIntent.Reset -> {
+                _state.value = UserWorkoutsState()
             }
         }
     }
 
     suspend fun getUserWorkouts(token: String): GetUserWorkoutsResponse? {
         try {
-            processIntent(UserWorkoutIntent.SetIsLoading(true))
-            processIntent(UserWorkoutIntent.SetError(null))
+            processIntent(UserWorkoutsIntent.SetIsLoading(true))
+            processIntent(UserWorkoutsIntent.SetError(null))
             val response = ApiClient.apiService(token).getUserWorkouts()
             Timber.d("WORKOUTS: response: $response")
-            processIntent(UserWorkoutIntent.SetIsLoading(false))
-            processIntent(UserWorkoutIntent.SetWorkouts(response.workouts))
+            processIntent(UserWorkoutsIntent.SetIsLoading(false))
+            processIntent(UserWorkoutsIntent.SetWorkouts(response.workouts))
             return response
         } catch (e: retrofit2.HttpException) {
-            processIntent(UserWorkoutIntent.SetIsLoading(false))
-            processIntent(UserWorkoutIntent.SetError(e.message()))
+            processIntent(UserWorkoutsIntent.SetIsLoading(false))
+            processIntent(UserWorkoutsIntent.SetError(e.message()))
             return null
         }
     }
@@ -53,7 +56,7 @@ class UserWorkoutsViewModel : ViewModel() {
         if (selection.isNotEmpty()) {
             val selectedDate = selection[0]
             processIntent(
-                UserWorkoutIntent.SetSelectedDate(selectedDate.toString()),
+                UserWorkoutsIntent.SetSelectedDate(selectedDate.toString()),
             )
         }
     }
