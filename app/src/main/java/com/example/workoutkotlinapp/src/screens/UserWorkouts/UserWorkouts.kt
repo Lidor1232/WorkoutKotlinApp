@@ -31,7 +31,7 @@ fun UserWorkouts() {
         }
     }
 
-    LaunchedEffect(userWorkoutsViewModel) {
+    LaunchedEffect(Unit) {
         if (token != null) {
             userWorkoutsViewModel.getUserWorkouts(token!!)
         }
