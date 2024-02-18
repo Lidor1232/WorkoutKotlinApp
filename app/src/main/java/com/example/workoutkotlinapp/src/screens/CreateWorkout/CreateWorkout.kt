@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,13 +26,8 @@ fun CreateWorkout() {
     val createWorkoutController =
         CreateWorkoutController(
             mainViewModel,
+            createWorkoutViewModel,
         )
-
-    DisposableEffect(Unit) {
-        onDispose {
-            createWorkoutViewModel.processIntent(CreateWorkoutIntent.Reset)
-        }
-    }
 
     Column {
         BackButton(
