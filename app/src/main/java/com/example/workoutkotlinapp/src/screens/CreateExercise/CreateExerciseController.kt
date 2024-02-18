@@ -14,15 +14,13 @@ class CreateExerciseController(
     private val createExerciseViewModel: CreateExerciseViewModel,
 ) {
     fun onSubmit(
-        name: String?,
-        sets: List<ExerciseSet>?,
+        name: String,
+        sets: List<ExerciseSet>,
     ) {
         mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.CreateWorkout))
-        if (name !== null && sets !== null) {
-            createWorkoutViewModel.processIntent(
-                CreateWorkoutIntent.AddExercise(ICreateExercise(sets = sets, name = name)),
-            )
-        }
+        createWorkoutViewModel.processIntent(
+            CreateWorkoutIntent.AddExercise(ICreateExercise(sets = sets, name = name)),
+        )
         createExerciseViewModel.processIntent(CreateExerciseIntent.Reset)
     }
 }
