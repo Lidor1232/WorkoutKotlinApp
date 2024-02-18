@@ -13,10 +13,10 @@ class SubmitButtonController(
 ) {
     suspend fun onSubmit(
         date: Date?,
-        exercises: List<ICreateExercise>,
+        exercises: List<ICreateExercise>?,
         userToken: String?,
     ) {
-        if (date !== null && userToken !== null) {
+        if (date !== null && userToken !== null && exercises !== null) {
             createWorkoutViewModel.createWorkout(date.toString(), exercises, userToken)
             mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
         }
