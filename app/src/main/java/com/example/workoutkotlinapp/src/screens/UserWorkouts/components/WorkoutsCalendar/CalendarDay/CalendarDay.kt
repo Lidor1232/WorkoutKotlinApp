@@ -5,8 +5,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkoutsViewModel
-import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.DateWithWorkout.DateWithWorkout
-import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.DateWithoutWorkout.DateWithoutWorkout
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.CalendarDay.DateWithWorkout.DateWithWorkout
+import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.CalendarDay.DateWithoutWorkout.DateWithoutWorkout
 import io.github.boguszpawlowski.composecalendar.day.DayState
 import io.github.boguszpawlowski.composecalendar.selection.DynamicSelectionState
 import kotlinx.coroutines.flow.map

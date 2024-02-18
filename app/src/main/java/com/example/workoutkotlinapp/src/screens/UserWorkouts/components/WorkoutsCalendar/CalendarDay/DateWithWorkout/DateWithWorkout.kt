@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.DateWithWorkout
+package com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.CalendarDay.DateWithWorkout
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
