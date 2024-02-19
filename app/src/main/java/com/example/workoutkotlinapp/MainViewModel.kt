@@ -1,41 +1,58 @@
 package com.example.workoutkotlinapp
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
 import com.example.workoutkotlinapp.src.SharedPreference.SharedPreferencesManager
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class MainViewModel : ViewModel() {
-    private val _state = MutableLiveData(MainState())
-    val state: LiveData<MainState> get() = _state
+    private val _state = MutableStateFlow(MainState())
+    val state: StateFlow<MainState> = _state
 
     fun processIntent(intent: MainIntent) {
         when (intent) {
             is MainIntent.GetUserSetUser -> {
                 val newGetUser = _state.value?.getUser?.copy(user = intent.user)
                 if (newGetUser !== null) {
-                    _state.value = _state.value?.copy(getUser = newGetUser)
+                    _state.update {
+                        it.copy(getUser = newGetUser)
+                    }
                 }
             }
             is MainIntent.GetUserSetIsLoading -> {
                 val newGetUser = _state.value?.getUser?.copy(isLoading = intent.isLoading)
                 if (newGetUser !== null) {
-                    _state.value = _state.value?.copy(getUser = newGetUser)
+                    _state.update {
+                        it.copy(getUser = newGetUser)
+                    }
                 }
             }
             is MainIntent.GetUserSetError -> {
                 val newGetUser = _state.value?.getUser?.copy(error = intent.error)
                 if (newGetUser !== null) {
-                    _state.value = _state.value?.copy(getUser = newGetUser)
+                    _state.update {
+                        it.copy(
+                            getUser = newGetUser,
+                        )
+                    }
                 }
             }
-            is MainIntent.SetActiveScreen -> _state.value = _state.value?.copy(activeScreen = intent.activeScreen)
-            is MainIntent.SetToken -> _state.value = _state.value?.copy(token = intent.token)
+            is MainIntent.SetActiveScreen -> {
+                _state.update {
+                    it.copy(activeScreen = intent.activeScreen)
+                }
+            }
+            is MainIntent.SetToken -> {
+                _state.update {
+                    it.copy(token = intent.token)
+                }
+            }
         }
     }
 
-    suspend fun getUser(token: String) {
+    private suspend fun getUser(token: String) {
         try {
             processIntent(MainIntent.GetUserSetIsLoading(true))
             processIntent(MainIntent.GetUserSetError(null))

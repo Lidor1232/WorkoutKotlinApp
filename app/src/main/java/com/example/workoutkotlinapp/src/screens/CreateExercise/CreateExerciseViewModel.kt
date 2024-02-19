@@ -1,45 +1,60 @@
 package com.example.workoutkotlinapp.src.screens.CreateExercise
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class CreateExerciseViewModel() : ViewModel() {
-    private val _state = MutableLiveData(CreateExerciseState())
-    val state: LiveData<CreateExerciseState> get() = _state
+    private val _state = MutableStateFlow(CreateExerciseState())
+    val state: StateFlow<CreateExerciseState> = _state
 
     fun processIntent(intent: CreateExerciseIntent) {
         when (intent) {
             is CreateExerciseIntent.SetName -> {
-                _state.value = _state.value?.copy(name = intent.name)
+                _state.update {
+                    it.copy(name = intent.name)
+                }
             }
 
             is CreateExerciseIntent.AddSet -> {
-                if (_state.value?.sets !== null) {
-                    _state.value = _state.value?.copy(sets = _state.value?.sets!! + intent.set)
+                _state.update {
+                    it.copy(sets = _state.value.sets + intent.set)
                 }
             }
 
             is CreateExerciseIntent.AddSetUpdateReps -> {
                 val newAddSet = _state.value?.addSet?.copy(reps = intent.reps)
                 if (newAddSet !== null) {
-                    _state.value = _state.value?.copy(addSet = newAddSet)
+                    _state.update {
+                        it.copy(
+                            addSet = newAddSet,
+                        )
+                    }
                 }
             }
 
             is CreateExerciseIntent.AddSetUpdateWeight -> {
                 val newAddSet = _state.value?.addSet?.copy(weight = intent.weight)
                 if (newAddSet !== null) {
-                    _state.value = _state.value?.copy(addSet = newAddSet)
+                    _state.update {
+                        it.copy(
+                            addSet = newAddSet,
+                        )
+                    }
                 }
             }
 
             is CreateExerciseIntent.Reset -> {
-                _state.value = CreateExerciseState()
+                _state.update {
+                    CreateExerciseState()
+                }
             }
 
             is CreateExerciseIntent.AddSetReset -> {
-                _state.value = _state.value?.copy(addSet = AddSetState(reps = "", weight = ""))
+                _state.update {
+                    it.copy(addSet = AddSetState(reps = "", weight = ""))
+                }
             }
         }
     }

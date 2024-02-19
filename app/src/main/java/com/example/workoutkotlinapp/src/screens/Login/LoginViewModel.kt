@@ -1,36 +1,54 @@
 package com.example.workoutkotlinapp.src.screens.Login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.UserLoginRequest
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.user.UserLoginResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class LoginViewModel : ViewModel() {
-    private val _state = MutableLiveData(LoginState())
-    val state: LiveData<LoginState> get() = _state
+    private val _state = MutableStateFlow(LoginState())
+
+    val state: StateFlow<LoginState> = _state
 
     fun processIntent(intent: LoginIntent) {
         when (intent) {
             is LoginIntent.SetUserName -> {
-                _state.value = _state.value?.copy(userName = intent.userName)
+                _state.update {
+                    it.copy(userName = intent.userName)
+                }
             }
 
             is LoginIntent.SetPassword -> {
-                _state.value = _state.value?.copy(password = intent.password)
+                _state.update {
+                    it.copy(
+                        password = intent.password,
+                    )
+                }
             }
 
             is LoginIntent.SetIsLoading -> {
-                _state.value = _state.value?.copy(isLoading = intent.isLoading)
+                _state.update {
+                    it.copy(
+                        isLoading = intent.isLoading,
+                    )
+                }
             }
 
             is LoginIntent.SetError -> {
-                _state.value = _state.value?.copy(error = intent.error)
+                _state.update {
+                    it.copy(
+                        error = intent.error,
+                    )
+                }
             }
 
             is LoginIntent.Reset -> {
-                _state.value = LoginState()
+                _state.update {
+                    LoginState()
+                }
             }
         }
     }

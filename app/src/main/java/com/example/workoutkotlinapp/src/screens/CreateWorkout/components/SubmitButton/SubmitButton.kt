@@ -3,14 +3,14 @@ package com.example.workoutkotlinapp.src.screens.CreateWorkout.components.Submit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkoutViewModel
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @Composable
@@ -24,9 +24,9 @@ fun SubmitButton() {
             mainViewModel = mainViewModel,
         )
 
-    val date by createWorkoutViewModel.state.map { it.date }.observeAsState()
-    val exercises by createWorkoutViewModel.state.map { it.exercises }.observeAsState()
-    val userToken by mainViewModel.state.map { it.token }.observeAsState()
+    val date by createWorkoutViewModel.state.map { it.date }.collectAsState(initial = null)
+    val exercises by createWorkoutViewModel.state.map { it.exercises }.collectAsState(initial = listOf())
+    val token by mainViewModel.state.map { it.token }.collectAsState(initial = null)
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -35,7 +35,7 @@ fun SubmitButton() {
             submitButtonController.onSubmit(
                 date = date,
                 exercises = exercises,
-                userToken = userToken,
+                userToken = token,
             )
         }
     }) {

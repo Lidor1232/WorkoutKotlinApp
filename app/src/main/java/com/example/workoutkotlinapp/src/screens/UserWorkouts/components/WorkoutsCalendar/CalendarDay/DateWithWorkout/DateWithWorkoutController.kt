@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.DateWithWorkout
+package com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.CalendarDay.DateWithWorkout
 
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent

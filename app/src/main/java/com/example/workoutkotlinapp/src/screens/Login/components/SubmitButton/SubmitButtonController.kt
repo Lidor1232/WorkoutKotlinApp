@@ -13,12 +13,12 @@ class SubmitButtonController(
     private val loginViewModel: LoginViewModel,
 ) {
     fun onSubmit(
-        userName: String?,
-        password: String?,
+        userName: String,
+        password: String,
         sharedPreferencesManager: SharedPreferencesManager,
     ) {
         loginViewModel.viewModelScope.launch {
-            val response = loginViewModel.userLogin(userName!!, password!!)
+            val response = loginViewModel.userLogin(userName, password)
             if (response != null) {
                 mainViewModel.processIntent(MainIntent.SetToken(response.token))
                 mainViewModel.processIntent(MainIntent.GetUserSetUser(response.user))
