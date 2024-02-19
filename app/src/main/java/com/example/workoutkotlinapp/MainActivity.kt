@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -20,6 +20,7 @@ import com.example.workoutkotlinapp.src.screens.Register.Register
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkouts
 import com.example.workoutkotlinapp.src.screens.WorkoutDetails.WorkoutDetails
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
+import kotlinx.coroutines.flow.map
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -63,18 +64,16 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val viewModel: MainViewModel = viewModel()
 
-                    val activeScreen by viewModel.state.map { it.activeScreen }.observeAsState()
+                    val activeScreen by viewModel.state.map { it.activeScreen }.collectAsState(initial = ActiveScreen.Loading)
 
-                    if (activeScreen !== null) {
-                        when (activeScreen!!) {
-                            ActiveScreen.Login -> Login()
-                            ActiveScreen.Register -> Register()
-                            ActiveScreen.UserWorkouts -> UserWorkouts()
-                            ActiveScreen.CreateWorkout -> CreateWorkout()
-                            ActiveScreen.CreateExercise -> CreateExercise()
-                            ActiveScreen.WorkoutDetails -> WorkoutDetails()
-                            ActiveScreen.Loading -> Loading()
-                        }
+                    when (activeScreen) {
+                        ActiveScreen.Login -> Login()
+                        ActiveScreen.Register -> Register()
+                        ActiveScreen.UserWorkouts -> UserWorkouts()
+                        ActiveScreen.CreateWorkout -> CreateWorkout()
+                        ActiveScreen.CreateExercise -> CreateExercise()
+                        ActiveScreen.WorkoutDetails -> WorkoutDetails()
+                        ActiveScreen.Loading -> Loading()
                     }
                 }
             }

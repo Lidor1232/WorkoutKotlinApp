@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -17,13 +17,14 @@ import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.ErrorHan
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LoadingHandler.LoadingHandler
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.LogoutButton.LogoutButton
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.WorkoutsCalendar.WorkoutsCalendar
+import kotlinx.coroutines.flow.map
 
 @Composable()
 fun UserWorkouts() {
     val userWorkoutsViewModel: UserWorkoutsViewModel = viewModel()
     val mainViewModel: MainViewModel = viewModel()
 
-    val token by mainViewModel.state.map { it.token }.observeAsState()
+    val token by mainViewModel.state.map { it.token }.collectAsState(initial = null)
 
     DisposableEffect(Unit) {
         onDispose {
