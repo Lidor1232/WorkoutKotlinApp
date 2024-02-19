@@ -5,7 +5,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,8 +24,8 @@ fun SubmitButton() {
             mainViewModel = mainViewModel,
         )
 
-    val date by createWorkoutViewModel.state.map { it.date }.observeAsState()
-    val exercises by createWorkoutViewModel.state.map { it.exercises }.observeAsState()
+    val date by createWorkoutViewModel.state.map { it.date }.collectAsState(initial = null)
+    val exercises by createWorkoutViewModel.state.map { it.exercises }.collectAsState(initial = listOf())
     val token by mainViewModel.state.map { it.token }.collectAsState(initial = null)
 
     val coroutineScope = rememberCoroutineScope()

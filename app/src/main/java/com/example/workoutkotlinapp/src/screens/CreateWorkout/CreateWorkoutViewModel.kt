@@ -1,39 +1,52 @@
 package com.example.workoutkotlinapp.src.screens.CreateWorkout
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.Network.ApiClient
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.workout.CreateWorkoutRequest
 import com.example.workoutkotlinapp.src.Network.ApiService.routes.workout.ICreateExercise
 import com.example.workoutkotlinapp.src.types.Workout
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class CreateWorkoutViewModel : ViewModel() {
-    private val _state = MutableLiveData(CreateWorkoutState())
-    val state: LiveData<CreateWorkoutState> get() = _state
+    private val _state = MutableStateFlow(CreateWorkoutState())
+    val state: StateFlow<CreateWorkoutState> = _state
 
     fun processIntent(intent: CreateWorkoutIntent) {
         when (intent) {
             is CreateWorkoutIntent.SetDate -> {
-                _state.value = _state.value?.copy(date = intent.date)
+                _state.update {
+                    it.copy(date = intent.date)
+                }
             }
 
             is CreateWorkoutIntent.AddExercise -> {
-                if (_state.value?.exercises !== null) {
-                    _state.value = _state.value?.copy(exercises = _state.value?.exercises!! + intent.exercise)
+                _state.update {
+                    it.copy(exercises = _state.value.exercises + intent.exercise)
                 }
             }
 
             is CreateWorkoutIntent.SetIsLoading -> {
-                _state.value = _state.value?.copy(isLoading = intent.isLoading)
+                _state.update {
+                    it.copy(
+                        isLoading = intent.isLoading,
+                    )
+                }
             }
 
             is CreateWorkoutIntent.SetError -> {
-                _state.value = _state.value?.copy(error = intent.error)
+                _state.update {
+                    it.copy(
+                        error = intent.error,
+                    )
+                }
             }
 
             is CreateWorkoutIntent.Reset -> {
-                _state.value = CreateWorkoutState()
+                _state.update {
+                    CreateWorkoutState()
+                }
             }
         }
     }

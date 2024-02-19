@@ -11,9 +11,10 @@ import com.example.workoutkotlinapp.src.utils.Date.DateUtil
 
 @Composable
 fun DateInput() {
+    val context = LocalContext.current
+
     val viewModel: CreateWorkoutViewModel = viewModel()
 
-    val context = LocalContext.current
     Button(onClick = {
         DateUtil.showDatePicker(context) { date ->
             viewModel.processIntent(CreateWorkoutIntent.SetDate(date))
