@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.update
 
 class LoginViewModel : ViewModel() {
     private val _state = MutableStateFlow(LoginState())
-
     val state: StateFlow<LoginState> = _state
 
     fun processIntent(intent: LoginIntent) {
