@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.Register.components.lastNameInput
+package com.example.workoutkotlinapp.src.screens.register.components.lastNameInput
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,8 +10,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.Register.RegisterIntent
-import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
+import com.example.workoutkotlinapp.src.screens.register.RegisterIntent
+import com.example.workoutkotlinapp.src.screens.register.RegisterViewModel
 import kotlinx.coroutines.flow.map
 
 @OptIn(ExperimentalMaterial3Api::class)

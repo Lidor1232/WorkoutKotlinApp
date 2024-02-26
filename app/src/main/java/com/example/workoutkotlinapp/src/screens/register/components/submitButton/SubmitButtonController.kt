@@ -1,10 +1,10 @@
-package com.example.workoutkotlinapp.src.screens.Register.components.submitButton
+package com.example.workoutkotlinapp.src.screens.register.components.submitButton
 
 import androidx.lifecycle.viewModelScope
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainViewModel
-import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
+import com.example.workoutkotlinapp.src.screens.register.RegisterViewModel
 import com.example.workoutkotlinapp.src.sharedPreference.SharedPreferencesManager
 import kotlinx.coroutines.launch
 

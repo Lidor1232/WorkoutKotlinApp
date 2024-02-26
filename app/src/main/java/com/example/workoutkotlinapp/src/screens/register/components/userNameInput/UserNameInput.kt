@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.Register.components.passwordInput
+package com.example.workoutkotlinapp.src.screens.register.components.userNameInput
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,27 +10,27 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
+import com.example.workoutkotlinapp.src.screens.register.RegisterViewModel
 import kotlinx.coroutines.flow.map
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordInput() {
+fun UserNameInput() {
     val registerViewModel: RegisterViewModel = viewModel()
 
-    val passwordInputController = PasswordInputController(registerViewModel)
+    val userNameInputController = UserNameInputController(registerViewModel)
 
-    val password by registerViewModel.state.map { it.password }.collectAsState(initial = "")
+    val userName by registerViewModel.state.map { it.userName }.collectAsState(initial = "")
 
     TextField(
         modifier = Modifier.padding(bottom = 16.dp),
-        value = password,
+        value = userName,
         onValueChange = {
                 text ->
-            passwordInputController.onPasswordInputChange(text)
+            userNameInputController.onUserNameInputChange(text)
         },
         placeholder = {
-            Text("Password")
+            Text("User Name")
         },
     )
 }

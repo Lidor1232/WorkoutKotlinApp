@@ -11,11 +11,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
-import com.example.workoutkotlinapp.src.screens.Register.Register
 import com.example.workoutkotlinapp.src.screens.createExercise.CreateExercise
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkout
 import com.example.workoutkotlinapp.src.screens.loading.Loading
 import com.example.workoutkotlinapp.src.screens.login.Login
+import com.example.workoutkotlinapp.src.screens.register.Register
 import com.example.workoutkotlinapp.src.screens.userWorkouts.UserWorkouts
 import com.example.workoutkotlinapp.src.screens.workoutDetails.WorkoutDetails
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme

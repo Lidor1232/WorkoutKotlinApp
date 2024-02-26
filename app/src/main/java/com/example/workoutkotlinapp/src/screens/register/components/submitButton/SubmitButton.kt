@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.Register.components.submitButton
+package com.example.workoutkotlinapp.src.screens.register.components.submitButton
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
-import com.example.workoutkotlinapp.src.screens.Register.RegisterViewModel
+import com.example.workoutkotlinapp.src.screens.register.RegisterViewModel
 import com.example.workoutkotlinapp.src.sharedPreference.SharedPreferencesManager
 import kotlinx.coroutines.flow.map
 

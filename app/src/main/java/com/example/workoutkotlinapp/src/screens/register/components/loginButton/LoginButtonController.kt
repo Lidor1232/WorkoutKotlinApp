@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.Register.components.loginButton
+package com.example.workoutkotlinapp.src.screens.register.components.loginButton
 
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent

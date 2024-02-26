@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.Register
+package com.example.workoutkotlinapp.src.screens.register
 
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.network.ApiClient

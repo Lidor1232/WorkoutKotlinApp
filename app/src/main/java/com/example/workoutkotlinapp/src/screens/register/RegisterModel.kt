@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.Register
+package com.example.workoutkotlinapp.src.screens.register
 
 data class RegisterState(
     val firstName: String = "",
