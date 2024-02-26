@@ -52,14 +52,11 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private suspend fun getUser(
-        token: String,
-        userId: String,
-    ) {
+    private suspend fun getUser(token: String) {
         try {
             processIntent(MainIntent.GetUserSetIsLoading(true))
             processIntent(MainIntent.GetUserSetError(null))
-            val user = ApiClient.apiService(token).getUser(userId)
+            val user = ApiClient.apiService(token).getUser()
             processIntent(MainIntent.GetUserSetIsLoading(false))
             processIntent(MainIntent.GetUserSetUser(user))
         } catch (e: retrofit2.HttpException) {
@@ -70,10 +67,9 @@ class MainViewModel : ViewModel() {
 
     suspend fun handleLocalToken(sharedPreferencesManager: SharedPreferencesManager) {
         val token = sharedPreferencesManager.getToken()
-        val userId = sharedPreferencesManager.getUserId()
-        if (token !== null && userId !== null) {
+        if (token !== null) {
             processIntent(MainIntent.SetToken(token))
-            getUser(token, userId)
+            getUser(token)
             processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
         } else {
             processIntent(MainIntent.SetActiveScreen(ActiveScreen.Login))
