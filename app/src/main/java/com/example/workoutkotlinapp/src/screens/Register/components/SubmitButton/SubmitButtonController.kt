@@ -32,6 +32,7 @@ class SubmitButtonController(
                 mainViewModel.processIntent(MainIntent.GetUserSetUser(response.user))
                 mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.UserWorkouts))
                 sharedPreferencesManager.updateToken(response.token)
+                sharedPreferencesManager.updateUserId(response.user._id)
             }
         }
     }

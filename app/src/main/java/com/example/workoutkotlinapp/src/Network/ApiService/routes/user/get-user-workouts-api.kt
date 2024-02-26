@@ -2,6 +2,7 @@ package com.example.workoutkotlinapp.src.Network.ApiService.routes.user
 
 import com.example.workoutkotlinapp.src.types.Workout
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 data class GetUserWorkoutsResponse(
     val workouts: List<Workout>,
@@ -9,6 +10,8 @@ data class GetUserWorkoutsResponse(
 )
 
 interface GetUserWorkoutsApi {
-    @GET("workout/user/workouts")
-    suspend fun getUserWorkouts(): GetUserWorkoutsResponse
+    @GET("workout/user/{userId}/workouts")
+    suspend fun getUserWorkouts(
+        @Path("userId") userId: String,
+    ): GetUserWorkoutsResponse
 }

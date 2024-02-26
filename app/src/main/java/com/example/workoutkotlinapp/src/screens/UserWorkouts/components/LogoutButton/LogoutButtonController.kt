@@ -11,6 +11,7 @@ class LogoutButtonController(
 ) {
     fun onClick() {
         sharedPreferencesManager.updateToken(null)
+        sharedPreferencesManager.updateUserId(null)
         mainViewModel.processIntent(MainIntent.SetToken(null))
         mainViewModel.processIntent(MainIntent.GetUserSetUser(null))
         mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.Login))

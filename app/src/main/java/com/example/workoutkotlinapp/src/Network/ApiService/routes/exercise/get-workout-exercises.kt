@@ -10,7 +10,7 @@ data class GetWorkoutExercisesResponse(
 )
 
 interface GetWorkoutExercises {
-    @GET("exercise/workout/{workoutId}")
+    @GET("exercise/workout/{workoutId}/exercises")
     suspend fun getWorkoutExercises(
         @Path("workoutId") workoutId: String,
     ): GetWorkoutExercisesResponse

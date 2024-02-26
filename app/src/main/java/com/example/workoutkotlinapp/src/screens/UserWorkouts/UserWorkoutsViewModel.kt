@@ -48,11 +48,14 @@ class UserWorkoutsViewModel : ViewModel() {
         }
     }
 
-    suspend fun getUserWorkouts(token: String): GetUserWorkoutsResponse? {
+    suspend fun getUserWorkouts(
+        token: String,
+        userId: String,
+    ): GetUserWorkoutsResponse? {
         try {
             processIntent(UserWorkoutsIntent.SetIsLoading(true))
             processIntent(UserWorkoutsIntent.SetError(null))
-            val response = ApiClient.apiService(token).getUserWorkouts()
+            val response = ApiClient.apiService(token).getUserWorkouts(userId)
             processIntent(UserWorkoutsIntent.SetIsLoading(false))
             processIntent(UserWorkoutsIntent.SetWorkouts(response.workouts))
             return response

@@ -9,7 +9,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.screens.UserWorkouts.components.CreateWorkoutButton.CreateWorkoutButton
@@ -25,6 +24,7 @@ fun UserWorkouts() {
     val mainViewModel: MainViewModel = viewModel()
 
     val token by mainViewModel.state.map { it.token }.collectAsState(initial = null)
+    val userId by mainViewModel.state.map { it.getUser.user?._id }.collectAsState(initial = null)
 
     DisposableEffect(Unit) {
         onDispose {
@@ -33,8 +33,8 @@ fun UserWorkouts() {
     }
 
     LaunchedEffect(Unit) {
-        if (token != null) {
-            userWorkoutsViewModel.getUserWorkouts(token!!)
+        if (token !== null && userId !== null) {
+            userWorkoutsViewModel.getUserWorkouts(token!!, userId!!)
         }
     }
 
