@@ -1,8 +1,8 @@
 package com.example.workoutkotlinapp
 
 import androidx.lifecycle.ViewModel
-import com.example.workoutkotlinapp.src.Network.ApiClient
-import com.example.workoutkotlinapp.src.SharedPreference.SharedPreferencesManager
+import com.example.workoutkotlinapp.src.network.ApiClient
+import com.example.workoutkotlinapp.src.sharedPreference.SharedPreferencesManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
