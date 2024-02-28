@@ -17,16 +17,18 @@ import kotlinx.coroutines.flow.map
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LastNameInput() {
-    val viewModel: RegisterViewModel = viewModel()
+    val registerViewModel: RegisterViewModel = viewModel()
 
-    val lastName by viewModel.state.map { it.lastName }.collectAsState(initial = "")
+    val lastNameInputController = LastNameInputController(registerViewModel)
+
+    val lastName by registerViewModel.state.map { it.lastName }.collectAsState(initial = "")
 
     TextField(
         modifier = Modifier.padding(bottom = 16.dp),
         value = lastName,
         onValueChange = {
                 text ->
-            viewModel.processIntent(RegisterIntent.SetLastName(text))
+            lastNameInputController.onChangeLastNameInput(text)
         },
         placeholder = {
             Text("Last Name")

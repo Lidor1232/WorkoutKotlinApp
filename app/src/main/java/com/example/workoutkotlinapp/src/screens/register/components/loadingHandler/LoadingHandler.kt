@@ -17,7 +17,7 @@ fun LoadingHandler() {
 
     val isLoading by viewModel.state.map { it.isLoading }.collectAsState(initial = false)
 
-    if (isLoading === true) {
+    if (isLoading) {
         Text(
             modifier = Modifier.padding(bottom = 16.dp),
             text = "Loading...",

@@ -10,23 +10,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.workoutkotlinapp.src.screens.register.RegisterIntent
 import com.example.workoutkotlinapp.src.screens.register.RegisterViewModel
 import kotlinx.coroutines.flow.map
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FirstNameInput() {
-    val viewModel: RegisterViewModel = viewModel()
+    val registerViewModel: RegisterViewModel = viewModel()
 
-    val firstName by viewModel.state.map { it.firstName }.collectAsState(initial = "")
+    val firstNameInputController = FirstNameInputController(registerViewModel)
+
+    val firstName by registerViewModel.state.map { it.firstName }.collectAsState(initial = "")
 
     TextField(
         modifier = Modifier.padding(bottom = 16.dp),
         value = firstName,
         onValueChange = {
                 text ->
-            viewModel.processIntent(RegisterIntent.SetFirstName(text))
+            firstNameInputController.onChangeFirstNameInput(text)
         },
         placeholder = {
             Text("First Name")
