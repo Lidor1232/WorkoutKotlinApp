@@ -44,11 +44,8 @@ class MainActivity : ComponentActivity() {
             },
         )
 
-        // start Koin!
         startKoin {
-            // declare used Android context
             androidContext(this@MainActivity)
-            // declare modules
             modules(listOf(appModule))
         }
 

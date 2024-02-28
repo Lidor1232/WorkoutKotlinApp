@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.dp
 @Composable()
 fun ScreenTitle(text: String) {
     Text(
-        text,
-        fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(bottom = 24.dp),
+        text = text,
+        fontWeight = FontWeight.Bold,
     )
 }
