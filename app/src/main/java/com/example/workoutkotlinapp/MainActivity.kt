@@ -9,16 +9,15 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.map
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
-import com.example.workoutkotlinapp.src.screens.CreateExercise.CreateExercise
-import com.example.workoutkotlinapp.src.screens.CreateWorkout.CreateWorkout
-import com.example.workoutkotlinapp.src.screens.Loading.Loading
-import com.example.workoutkotlinapp.src.screens.Login.Login
-import com.example.workoutkotlinapp.src.screens.Register.Register
-import com.example.workoutkotlinapp.src.screens.UserWorkouts.UserWorkouts
-import com.example.workoutkotlinapp.src.screens.WorkoutDetails.WorkoutDetails
+import com.example.workoutkotlinapp.src.screens.createExercise.CreateExercise
+import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkout
+import com.example.workoutkotlinapp.src.screens.initAppLoading.InitAppLoading
+import com.example.workoutkotlinapp.src.screens.login.Login
+import com.example.workoutkotlinapp.src.screens.register.Register
+import com.example.workoutkotlinapp.src.screens.userWorkouts.UserWorkouts
+import com.example.workoutkotlinapp.src.screens.workoutDetails.WorkoutDetails
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
 import kotlinx.coroutines.flow.map
 import org.koin.android.ext.koin.androidContext
@@ -45,11 +44,8 @@ class MainActivity : ComponentActivity() {
             },
         )
 
-        // start Koin!
         startKoin {
-            // declare used Android context
             androidContext(this@MainActivity)
-            // declare modules
             modules(listOf(appModule))
         }
 
@@ -64,7 +60,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val viewModel: MainViewModel = viewModel()
 
-                    val activeScreen by viewModel.state.map { it.activeScreen }.collectAsState(initial = ActiveScreen.Loading)
+                    val activeScreen by viewModel.state.map { it.activeScreen }.collectAsState(initial = ActiveScreen.InitAppLoading)
 
                     when (activeScreen) {
                         ActiveScreen.Login -> Login()
@@ -73,7 +69,7 @@ class MainActivity : ComponentActivity() {
                         ActiveScreen.CreateWorkout -> CreateWorkout()
                         ActiveScreen.CreateExercise -> CreateExercise()
                         ActiveScreen.WorkoutDetails -> WorkoutDetails()
-                        ActiveScreen.Loading -> Loading()
+                        ActiveScreen.InitAppLoading -> InitAppLoading()
                     }
                 }
             }

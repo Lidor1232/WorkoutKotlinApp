@@ -9,12 +9,12 @@ enum class ActiveScreen {
     CreateWorkout,
     CreateExercise,
     WorkoutDetails,
-    Loading,
+    InitAppLoading,
 }
 
 data class GetUserState(val isLoading: Boolean = false, val error: String? = null, val user: User? = null)
 
-data class MainState(val getUser: GetUserState = GetUserState(), val token: String? = null, val activeScreen: ActiveScreen = ActiveScreen.Loading)
+data class MainState(val getUser: GetUserState = GetUserState(), val token: String? = null, val activeScreen: ActiveScreen = ActiveScreen.InitAppLoading)
 
 sealed class MainIntent() {
     data class GetUserSetIsLoading(val isLoading: Boolean) : MainIntent()
