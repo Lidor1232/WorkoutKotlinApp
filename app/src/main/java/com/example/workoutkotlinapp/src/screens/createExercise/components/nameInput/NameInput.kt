@@ -17,9 +17,11 @@ import kotlinx.coroutines.flow.map
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NameInput() {
-    val viewModel: CreateExerciseViewModel = viewModel()
+    val createExerciseViewModel: CreateExerciseViewModel = viewModel()
 
-    val name by viewModel.state.map { it.name }.collectAsState(initial = "")
+    val nameInputController = NameInputController(createExerciseViewModel)
+
+    val name by createExerciseViewModel.state.map { it.name }.collectAsState(initial = "")
 
     TextField(
         modifier =
@@ -27,7 +29,7 @@ fun NameInput() {
         value = name,
         onValueChange = {
                 text ->
-            viewModel.processIntent(CreateExerciseIntent.SetName(text))
+            nameInputController.onChangeNameInput(text)
         },
         placeholder = {
             Text("Exercise Name")
