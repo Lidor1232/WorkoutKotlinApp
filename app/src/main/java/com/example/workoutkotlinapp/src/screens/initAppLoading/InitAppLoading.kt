@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.loading
+package com.example.workoutkotlinapp.src.screens.initAppLoading
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.sharedPreference.SharedPreferencesManager
 
 @Composable
-fun Loading() {
+fun InitAppLoading() {
     val context = LocalContext.current
     val sharedPreferencesManager = SharedPreferencesManager(context)
 

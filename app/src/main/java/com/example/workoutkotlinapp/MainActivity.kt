@@ -13,7 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.koin.appModule
 import com.example.workoutkotlinapp.src.screens.createExercise.CreateExercise
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkout
-import com.example.workoutkotlinapp.src.screens.loading.Loading
+import com.example.workoutkotlinapp.src.screens.initAppLoading.InitAppLoading
 import com.example.workoutkotlinapp.src.screens.login.Login
 import com.example.workoutkotlinapp.src.screens.register.Register
 import com.example.workoutkotlinapp.src.screens.userWorkouts.UserWorkouts
@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val viewModel: MainViewModel = viewModel()
 
-                    val activeScreen by viewModel.state.map { it.activeScreen }.collectAsState(initial = ActiveScreen.Loading)
+                    val activeScreen by viewModel.state.map { it.activeScreen }.collectAsState(initial = ActiveScreen.InitAppLoading)
 
                     when (activeScreen) {
                         ActiveScreen.Login -> Login()
@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
                         ActiveScreen.CreateWorkout -> CreateWorkout()
                         ActiveScreen.CreateExercise -> CreateExercise()
                         ActiveScreen.WorkoutDetails -> WorkoutDetails()
-                        ActiveScreen.Loading -> Loading()
+                        ActiveScreen.InitAppLoading -> InitAppLoading()
                     }
                 }
             }
