@@ -18,20 +18,20 @@ fun ExerciseItem(
 ) {
     Spacer(modifier = Modifier.height(24.dp))
     Text(
-        text = "Exercise Number: ${index + 1}",
         modifier = Modifier.padding(bottom = 16.dp),
+        text = "Exercise Number: ${index + 1}",
         fontWeight = FontWeight.Bold,
     )
     Text(text = "Name: ${exercise.name}")
     Spacer(modifier = Modifier.height(16.dp))
     Text(
+        modifier = Modifier.padding(bottom = 16.dp),
         text = "Sets:",
         fontWeight = FontWeight(600),
-        modifier = Modifier.padding(bottom = 16.dp),
     )
     Spacer(modifier = Modifier.height(8.dp))
     Column {
-        exercise.sets!!.forEachIndexed { index, set ->
+        exercise.sets.forEachIndexed { index, set ->
             Text(text = "Reps: ${set.reps}, Weight: ${set.weight}")
         }
     }
