@@ -2,8 +2,8 @@ package com.example.workoutkotlinapp.src.screens.register
 
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.network.ApiClient
-import com.example.workoutkotlinapp.src.network.apiService.routes.user.CreateUserRequest
-import com.example.workoutkotlinapp.src.network.apiService.routes.user.CreateUserResponse
+import com.example.workoutkotlinapp.src.network.apiService.api.user.CreateUserRequest
+import com.example.workoutkotlinapp.src.network.apiService.api.user.CreateUserResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

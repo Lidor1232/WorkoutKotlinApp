@@ -2,7 +2,7 @@ package com.example.workoutkotlinapp.src.screens.workoutDetails
 
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.network.ApiClient
-import com.example.workoutkotlinapp.src.network.apiService.routes.exercise.GetWorkoutExercisesResponse
+import com.example.workoutkotlinapp.src.network.apiService.api.exercise.GetWorkoutExercisesResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.network.apiService.routes.workout
+package com.example.workoutkotlinapp.src.network.apiService.api.workout
 
 import com.example.workoutkotlinapp.src.types.ExerciseSet
 import com.example.workoutkotlinapp.src.types.Workout

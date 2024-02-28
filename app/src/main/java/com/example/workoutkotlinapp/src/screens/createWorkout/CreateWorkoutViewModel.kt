@@ -2,8 +2,8 @@ package com.example.workoutkotlinapp.src.screens.createWorkout
 
 import androidx.lifecycle.ViewModel
 import com.example.workoutkotlinapp.src.network.ApiClient
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.CreateWorkoutRequest
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.ICreateExercise
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.CreateWorkoutRequest
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.ICreateExercise
 import com.example.workoutkotlinapp.src.types.Workout
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

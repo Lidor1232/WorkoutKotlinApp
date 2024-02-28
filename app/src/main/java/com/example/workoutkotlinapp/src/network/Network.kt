@@ -2,10 +2,10 @@
 package com.example.workoutkotlinapp.src.network
 
 import com.example.workoutkotlinapp.src.network.apiService.ApiService
-import com.example.workoutkotlinapp.src.network.retrofitClient.retrofitClient
+import com.example.workoutkotlinapp.src.network.client.client
 
 object ApiClient {
     fun apiService(token: String?): ApiService {
-        return retrofitClient(token).create(ApiService::class.java)
+        return client(token).create(ApiService::class.java)
     }
 }

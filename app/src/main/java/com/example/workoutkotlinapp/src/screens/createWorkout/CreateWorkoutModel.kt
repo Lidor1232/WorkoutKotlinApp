@@ -1,6 +1,6 @@
 package com.example.workoutkotlinapp.src.screens.createWorkout
 
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.ICreateExercise
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.ICreateExercise
 import java.util.Date
 
 data class CreateWorkoutState(val date: Date? = null, val exercises: List<ICreateExercise> = listOf(), val isLoading: Boolean = false, val error: String? = null)

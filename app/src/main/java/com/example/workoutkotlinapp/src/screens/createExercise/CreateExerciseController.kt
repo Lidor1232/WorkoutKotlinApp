@@ -3,7 +3,7 @@ package com.example.workoutkotlinapp.src.screens.createExercise
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainViewModel
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.ICreateExercise
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.ICreateExercise
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutIntent
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutViewModel
 import com.example.workoutkotlinapp.src.types.ExerciseSet

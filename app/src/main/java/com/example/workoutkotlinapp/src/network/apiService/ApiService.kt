@@ -1,10 +1,10 @@
 package com.example.workoutkotlinapp.src.network.apiService
 
-import com.example.workoutkotlinapp.src.network.apiService.routes.exercise.GetWorkoutExercises
-import com.example.workoutkotlinapp.src.network.apiService.routes.user.CreateUserApi
-import com.example.workoutkotlinapp.src.network.apiService.routes.user.GetUserApi
-import com.example.workoutkotlinapp.src.network.apiService.routes.user.GetUserWorkoutsApi
-import com.example.workoutkotlinapp.src.network.apiService.routes.user.UserLoginApi
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.CreateWorkoutApi
+import com.example.workoutkotlinapp.src.network.apiService.api.exercise.GetWorkoutExercises
+import com.example.workoutkotlinapp.src.network.apiService.api.user.CreateUserApi
+import com.example.workoutkotlinapp.src.network.apiService.api.user.GetUserApi
+import com.example.workoutkotlinapp.src.network.apiService.api.user.GetUserWorkoutsApi
+import com.example.workoutkotlinapp.src.network.apiService.api.user.UserLoginApi
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.CreateWorkoutApi
 
 interface ApiService : GetUserApi, UserLoginApi, CreateUserApi, GetWorkoutExercises, CreateWorkoutApi, GetUserWorkoutsApi

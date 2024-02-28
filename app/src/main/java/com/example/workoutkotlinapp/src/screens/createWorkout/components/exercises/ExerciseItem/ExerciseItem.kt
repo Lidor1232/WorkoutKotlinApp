@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.ICreateExercise
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.ICreateExercise
 
 @Composable
 fun ExerciseItem(exercise: ICreateExercise) {

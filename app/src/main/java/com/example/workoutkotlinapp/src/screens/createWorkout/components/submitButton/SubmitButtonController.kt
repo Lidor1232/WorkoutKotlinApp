@@ -3,7 +3,7 @@ package com.example.workoutkotlinapp.src.screens.createWorkout.components.submit
 import com.example.workoutkotlinapp.ActiveScreen
 import com.example.workoutkotlinapp.MainIntent
 import com.example.workoutkotlinapp.MainViewModel
-import com.example.workoutkotlinapp.src.network.apiService.routes.workout.ICreateExercise
+import com.example.workoutkotlinapp.src.network.apiService.api.workout.ICreateExercise
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutIntent
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutViewModel
 import java.util.Date

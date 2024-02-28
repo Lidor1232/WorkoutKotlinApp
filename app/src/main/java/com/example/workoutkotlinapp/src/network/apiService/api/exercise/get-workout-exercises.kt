@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.network.apiService.routes.exercise
+package com.example.workoutkotlinapp.src.network.apiService.api.exercise
 
 import com.example.workoutkotlinapp.src.types.Exercise
 import retrofit2.http.GET
