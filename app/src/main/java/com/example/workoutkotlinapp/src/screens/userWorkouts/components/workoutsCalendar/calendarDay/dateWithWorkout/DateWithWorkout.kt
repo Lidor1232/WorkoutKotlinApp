@@ -25,11 +25,11 @@ fun DateWithWorkout(
     val dateWithWorkoutController = DateWithWorkoutController(mainViewModel, workoutDetailsViewModel)
 
     Text(
-        dayState.date.dayOfMonth.toString(),
         modifier =
             Modifier.padding(16.dp).clickable {
                 dateWithWorkoutController.onClick(workout)
             },
+        text = dayState.date.dayOfMonth.toString(),
         color = Color.Blue,
     )
 }

@@ -14,7 +14,7 @@ import com.example.workoutkotlinapp.MainViewModel
 fun CreateWorkoutButton() {
     val mainViewModel: MainViewModel = viewModel()
 
-    val mainViewModelController = CreateWorkoutButtonController(mainViewModel = mainViewModel)
+    val mainViewModelController = CreateWorkoutButtonController(mainViewModel)
 
     Column(
         modifier = Modifier.fillMaxWidth(),

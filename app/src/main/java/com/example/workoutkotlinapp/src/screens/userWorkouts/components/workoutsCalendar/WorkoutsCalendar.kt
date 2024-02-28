@@ -13,7 +13,9 @@ import java.time.YearMonth
 
 @Composable
 fun WorkoutsCalendar() {
-    val viewModel: UserWorkoutsViewModel = viewModel()
+    val userWorkoutsViewModel: UserWorkoutsViewModel = viewModel()
+
+    val workoutsCalendarController = WorkoutCalendarController(userWorkoutsViewModel)
 
     val calendarState =
         rememberSelectableCalendarState(
@@ -24,7 +26,7 @@ fun WorkoutsCalendar() {
     LaunchedEffect(calendarState.selectionState) {
         snapshotFlow { calendarState.selectionState.selection }
             .collect { selection ->
-                viewModel.handleDateSelection(selection)
+                workoutsCalendarController.handleDateSelection(selection)
             }
     }
 

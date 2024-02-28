@@ -10,5 +10,8 @@ import io.github.boguszpawlowski.composecalendar.selection.DynamicSelectionState
 
 @Composable
 fun DateWithoutWorkout(dayState: DayState<DynamicSelectionState>) {
-    Text(dayState.date.dayOfMonth.toString(), modifier = Modifier.padding(16.dp))
+    Text(
+        modifier = Modifier.padding(16.dp),
+        text = dayState.date.dayOfMonth.toString(),
+    )
 }

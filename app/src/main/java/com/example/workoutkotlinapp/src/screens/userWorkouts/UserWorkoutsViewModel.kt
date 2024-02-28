@@ -6,7 +6,6 @@ import com.example.workoutkotlinapp.src.network.apiService.routes.user.GetUserWo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import java.time.LocalDate
 
 class UserWorkoutsViewModel : ViewModel() {
     private val _state = MutableStateFlow(UserWorkoutsState())
@@ -63,15 +62,6 @@ class UserWorkoutsViewModel : ViewModel() {
             processIntent(UserWorkoutsIntent.SetIsLoading(false))
             processIntent(UserWorkoutsIntent.SetError(e.message()))
             return null
-        }
-    }
-
-    fun handleDateSelection(selection: List<LocalDate>) {
-        if (selection.isNotEmpty()) {
-            val selectedDate = selection[0]
-            processIntent(
-                UserWorkoutsIntent.SetSelectedDate(selectedDate.toString()),
-            )
         }
     }
 }
