@@ -1,10 +1,10 @@
 package com.example.workoutkotlinapp.src.screens.createWorkout.components.errorHandler
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.workoutkotlinapp.src.components.ErrorMessage.ErrorMessage
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutViewModel
 import kotlinx.coroutines.flow.map
 
@@ -15,6 +15,6 @@ fun ErrorHandler() {
     val error by createWorkoutViewModel.state.map { it.error }.collectAsState(initial = null)
 
     if (error !== null) {
-        Text(text = error!!)
+        ErrorMessage(error.toString())
     }
 }

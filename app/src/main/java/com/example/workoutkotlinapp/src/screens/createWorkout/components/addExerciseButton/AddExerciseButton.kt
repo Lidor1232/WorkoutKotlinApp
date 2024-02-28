@@ -10,10 +10,12 @@ import com.example.workoutkotlinapp.MainViewModel
 
 @Composable
 fun AddExerciseButton() {
-    val viewModel: MainViewModel = viewModel()
+    val mainViewModel: MainViewModel = viewModel()
+
+    val addExerciseButtonController = AddExerciseButtonController(mainViewModel)
 
     Button(onClick = {
-        viewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.CreateExercise))
+        addExerciseButtonController.onClick()
     }) {
         Text(text = "Add Exercise")
     }
