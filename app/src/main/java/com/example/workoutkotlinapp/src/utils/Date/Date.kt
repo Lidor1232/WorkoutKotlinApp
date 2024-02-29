@@ -8,9 +8,9 @@ import java.time.ZonedDateTime
 import java.util.Date
 
 object DateUtil {
-    fun showDatePicker(
+    fun showDatePickerDialog(
         context: Context,
-        onDateSet: (date: Date) -> Unit,
+        onSetDate: (date: Date) -> Unit,
     ) {
         val year = Calendar.getInstance().get(Calendar.YEAR)
         val month = Calendar.getInstance().get(Calendar.MONTH)
@@ -27,7 +27,7 @@ object DateUtil {
                             set(Calendar.DAY_OF_MONTH, selectedDay)
                         }
                     val selectedDate = selectedDateCalendar.time
-                    onDateSet(selectedDate)
+                    onSetDate(selectedDate)
                 },
                 year,
                 month,

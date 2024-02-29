@@ -8,8 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.workoutkotlinapp.R
 import com.example.workoutkotlinapp.src.screens.login.LoginViewModel
 import kotlinx.coroutines.flow.map
 
@@ -33,7 +35,7 @@ fun UserNameInput() {
             userNameInputController.onChangeUserNameInput(text)
         },
         placeholder = {
-            Text("Username")
+            Text(text = stringResource(R.string.login_username_placeholder))
         },
     )
 }
