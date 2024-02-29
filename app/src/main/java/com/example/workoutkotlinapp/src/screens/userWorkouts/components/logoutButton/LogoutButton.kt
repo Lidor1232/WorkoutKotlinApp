@@ -8,9 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.sharedPreference.SharedPreferencesManager
+import com.example.workoutkotlinapp.R
 
 @Composable
 fun LogoutButton() {
@@ -32,7 +34,7 @@ fun LogoutButton() {
         Button(onClick = {
             logoutButtonController.onClick()
         }) {
-            Text(text = "Logout")
+            Text(text = stringResource(R.string.user_workouts_logout_button))
         }
     }
 }

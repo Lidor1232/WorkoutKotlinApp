@@ -8,9 +8,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.MainViewModel
+import com.example.workoutkotlinapp.R
 import com.example.workoutkotlinapp.src.screens.register.RegisterViewModel
 import com.example.workoutkotlinapp.src.sharedPreference.SharedPreferencesManager
 import kotlinx.coroutines.flow.map
@@ -40,6 +42,6 @@ fun SubmitButton() {
             submitButtonController.onClick(firstName, lastName, userName, password, sharedPreferencesManager)
         },
     ) {
-        Text(text = "Submit")
+        Text(text = stringResource(R.string.register_submit_button),)
     }
 }

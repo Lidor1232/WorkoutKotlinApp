@@ -16,7 +16,7 @@ fun DateInput() {
     val viewModel: CreateWorkoutViewModel = viewModel()
 
     Button(onClick = {
-        DateUtil.showDatePicker(context) { date ->
+        DateUtil.showDatePickerDialog(context) { date ->
             viewModel.processIntent(CreateWorkoutIntent.SetDate(date))
         }
     }) {

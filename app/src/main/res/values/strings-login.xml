@@ -1,0 +1,7 @@
+<resources>
+    <string name="login_screen_title">Login Screen</string>
+    <string name="login_username_placeholder">Username</string>
+    <string name="login_password_placeholder">Password</string>
+    <string name="login_submit_button">Submit</string>
+    <string name="login_register_button">Register</string>
+</resources>
