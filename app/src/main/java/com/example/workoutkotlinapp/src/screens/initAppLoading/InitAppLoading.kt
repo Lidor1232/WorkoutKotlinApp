@@ -21,7 +21,7 @@ fun InitAppLoading() {
     val mainViewModel: MainViewModel = viewModel()
 
     LaunchedEffect(Unit) {
-        mainViewModel.handleLocalToken(sharedPreferencesManager)
+        mainViewModel.initUserSession(sharedPreferencesManager)
     }
 
     Column(

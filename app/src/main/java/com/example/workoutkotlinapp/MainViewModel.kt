@@ -65,7 +65,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    suspend fun handleLocalToken(sharedPreferencesManager: SharedPreferencesManager) {
+    suspend fun initUserSession(sharedPreferencesManager: SharedPreferencesManager) {
         val token = sharedPreferencesManager.getToken()
         if (token !== null) {
             processIntent(MainIntent.SetToken(token))
