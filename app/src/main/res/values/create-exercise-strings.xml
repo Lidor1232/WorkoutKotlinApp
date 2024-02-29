@@ -1,0 +1,7 @@
+<resources>
+    <string name="create_exercise_screen_title">Create Exercise</string>
+    <string name="create_exercise_name_placeholder">Name</string>
+    <string name="create_exercise_submit_button">Submit</string>
+    <string name="create_exercise_sets_title">Sets</string>
+    <string name="create_exercise_set_item">Set number - %1$d: reps %2$s, weight: %3$s</string>
+</resources>
