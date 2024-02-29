@@ -1,0 +1,9 @@
+<resources>
+    <string name="register_screen_title">Register Screen</string>
+    <string name="register_first_name_placeholder">First Name</string>
+    <string name="register_last_name_placeholder">Last Name</string>
+    <string name="register_user_name_placeholder">User Name</string>
+    <string name="register_password_placeholder">Password</string>
+    <string name="register_submit_button">Submit</string>
+    <string name="register_login_button">Login</string>
+</resources>
