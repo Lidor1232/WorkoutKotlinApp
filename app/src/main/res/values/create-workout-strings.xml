@@ -1,0 +1,6 @@
+<resources>
+    <string name="create_workout_screen_title">Create Workout</string>
+    <string name="create_workout_add_exercise_button">Add Exercise</string>
+    <string name="create_workout_submit_button">Submit</string>
+    <string name="create_workout_exercise_item_text">Set number %1$d: Weight %2$s, Reps %3$s</string>
+</resources>
