@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.WeightInput
+package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.weightInput
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions

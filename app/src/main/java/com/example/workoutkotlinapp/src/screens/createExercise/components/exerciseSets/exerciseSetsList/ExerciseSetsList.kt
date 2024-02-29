@@ -1,5 +1,6 @@
-package com.example.workoutkotlinapp.src.screens.createExercise.components.exerciseSets.Title
+package com.example.workoutkotlinapp.src.screens.createExercise.components.exerciseSets.exerciseSetsList
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -9,12 +10,14 @@ import com.example.workoutkotlinapp.src.screens.createExercise.CreateExerciseVie
 import kotlinx.coroutines.flow.map
 
 @Composable
-fun Title() {
+fun ExerciseSetsList() {
     val viewModel: CreateExerciseViewModel = viewModel()
 
     val sets by viewModel.state.map { it.sets }.collectAsState(initial = listOf())
 
-    if (sets.isNotEmpty()) {
-        Text(text = "Sets")
+    Column {
+        sets.forEachIndexed { index, set ->
+            Text(text = "Set number - ${index + 1}: reps ${set.reps}, weight: ${set.weight}")
+        }
     }
 }

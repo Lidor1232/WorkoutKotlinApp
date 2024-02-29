@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.Title
+package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.title
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text

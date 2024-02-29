@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.SubmitButton
+package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.submitButton
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
