@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.RepsInput.RepsInput
-import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.SubmitButton.SubmitButton
-import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.Title.Title
-import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.WeightInput.WeightInput
+import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.repsInput.RepsInput
+import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.submitButton.SubmitButton
+import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.title.Title
+import com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.weightInput.WeightInput
 
 @Composable
 fun AddSet() {

@@ -1,4 +1,4 @@
-package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.RepsInput
+package com.example.workoutkotlinapp.src.screens.createExercise.components.addSet.repsInput
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
