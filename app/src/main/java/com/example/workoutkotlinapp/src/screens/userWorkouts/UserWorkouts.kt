@@ -24,7 +24,7 @@ fun UserWorkouts() {
     val mainViewModel: MainViewModel = viewModel()
 
     val token by mainViewModel.state.map { it.token }.collectAsState(initial = null)
-    val userId by mainViewModel.state.map { it.getUser.user?._id }.collectAsState(initial = null)
+    val userId by mainViewModel.state.map { it.getUser.user?.id }.collectAsState(initial = null)
 
     DisposableEffect(Unit) {
         onDispose {
