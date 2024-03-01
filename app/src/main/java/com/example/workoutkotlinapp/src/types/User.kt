@@ -1,3 +1,3 @@
 
 
-data class User(val _id: String, val firstName: String, val lastName: String, val userName: String)
+data class User(val id: String, val firstName: String, val lastName: String, val userName: String)
