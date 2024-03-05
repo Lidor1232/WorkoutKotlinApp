@@ -20,6 +20,6 @@ fun ErrorHandler() {
     val error by viewModel.state.map { it.error }.collectAsState(initial = null)
 
     if (error !== null) {
-        ErrorMessage(error.toString())
+        ErrorMessage(error = error.toString())
     }
 }
