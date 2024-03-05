@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.workoutkotlinapp.src.screens.createExercise.CreateExerciseIntent
 import com.example.workoutkotlinapp.src.screens.createExercise.CreateExerciseViewModel
-import com.example.workoutkotlinapp.src.types.ExerciseSet
+import com.example.workoutkotlinapp.src.types.Exercise
 import kotlinx.coroutines.flow.map
 
 @Composable
@@ -20,7 +20,7 @@ fun SubmitButton() {
     Button(onClick = {
         createExerciseViewModel.processIntent(
             CreateExerciseIntent.AddSet(
-                set = ExerciseSet(weight = weight.toInt(), reps = reps.toInt()),
+                set = Exercise.Set(weight = weight.toInt(), reps = reps.toInt()),
             ),
         )
         createExerciseViewModel.processIntent(CreateExerciseIntent.AddSetReset)

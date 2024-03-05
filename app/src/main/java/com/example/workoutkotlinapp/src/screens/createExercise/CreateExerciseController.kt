@@ -6,7 +6,7 @@ import com.example.workoutkotlinapp.MainViewModel
 import com.example.workoutkotlinapp.src.network.apiService.api.workout.ICreateExercise
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutIntent
 import com.example.workoutkotlinapp.src.screens.createWorkout.CreateWorkoutViewModel
-import com.example.workoutkotlinapp.src.types.ExerciseSet
+import com.example.workoutkotlinapp.src.types.Exercise
 
 class CreateExerciseController(
     private val mainViewModel: MainViewModel,
@@ -15,7 +15,7 @@ class CreateExerciseController(
 ) {
     fun onSubmit(
         name: String,
-        sets: List<ExerciseSet>,
+        sets: List<Exercise.Set>,
     ) {
         mainViewModel.processIntent(MainIntent.SetActiveScreen(ActiveScreen.CreateWorkout))
         createWorkoutViewModel.processIntent(

@@ -1,5 +1,6 @@
 package com.example.workoutkotlinapp
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,40 +21,34 @@ import com.example.workoutkotlinapp.src.screens.userWorkouts.UserWorkouts
 import com.example.workoutkotlinapp.src.screens.workoutDetails.WorkoutDetails
 import com.example.workoutkotlinapp.ui.theme.WorkoutKotlinAppTheme
 import kotlinx.coroutines.flow.map
+import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
+
+class App : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
+        startKoin {
+            androidContext(this@App)
+            modules(listOf(appModule))
+        }
+
+        Timber.d("Koin started with appModule.")
+    }
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Timber.plant(
-            object : Timber.DebugTree() {
-                /**
-                 * Override [log] to modify the tag and add a "global tag" prefix to it. You can rename the String "global_tag_" as you see fit.
-                 */
-                override fun log(
-                    priority: Int,
-                    tag: String?,
-                    message: String,
-                    t: Throwable?,
-                ) {
-                    super.log(priority, "global_tag_$tag", message, t)
-                }
-            },
-        )
-
-        startKoin {
-            androidContext(this@MainActivity)
-            modules(listOf(appModule))
-        }
-
-        Timber.d("App Created!")
-
         setContent {
             WorkoutKotlinAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,

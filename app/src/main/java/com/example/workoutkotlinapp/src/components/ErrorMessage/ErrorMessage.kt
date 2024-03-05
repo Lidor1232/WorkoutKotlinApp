@@ -8,9 +8,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable()
-fun ErrorMessage(error: String) {
+fun ErrorMessage(modifier: Modifier = Modifier, error: String) {
     Text(
-        modifier = Modifier.padding(bottom = 16.dp),
+        modifier = modifier.padding(bottom = 16.dp),
         text = error,
         color = Color.Red,
     )
